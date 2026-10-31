@@ -2,7 +2,7 @@ name: Update latest videos
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+      - cron: "0 4,16 * * *" # 09:30 and 21:30 IST
   workflow_dispatch:
 
 permissions:
