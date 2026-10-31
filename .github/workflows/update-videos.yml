@@ -1,8 +1,8 @@
-name: Update latest videos
+name: Update video map
 
 on:
   schedule:
-      - cron: "0 4,16 * * *" # 09:30 and 21:30 IST
+    - cron: "0 4,16 * * *" # 09:30 and 21:30 IST
   workflow_dispatch:
 
 permissions:
@@ -13,61 +13,131 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Read the YouTube feed into data/videos.json
+      - name: Read the channel's videos and their locations into data/videos.json
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
           python3 - <<'PY'
-          import json, re, urllib.request, xml.etree.ElementTree as ET
-          from collections import Counter
+          import json, os, re, time, urllib.parse, urllib.request, xml.etree.ElementTree as ET
           from datetime import datetime, timezone
           from pathlib import Path
 
           CHANNEL_ID = "UCg8qpYcdzVdtdXU9lWK7mQQ"  # @PhonoByteWorld
+          UPLOADS = "UU" + CHANNEL_ID[2:]           # the channel's uploads playlist
           FEED = f"https://www.youtube.com/feeds/videos.xml?channel_id={CHANNEL_ID}"
+          API = "https://www.googleapis.com/youtube/v3/"
+          KEY = os.environ.get("YOUTUBE_API_KEY", "")
+          NOMINATIM = "https://nominatim.openstreetmap.org/search"
+          AGENT = "PhonoByteWorld-site/1.0 (phonobyteworld@gmail.com)"  # Nominatim asks for an identifying agent
           NS = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015",
                 "media": "http://search.yahoo.com/mrss/"}
-          OUT = Path("data/videos.json")
-          HASHTAG = re.compile(r"#(\w+)")
-          SKIP = {"shorts", "short", "news", "breakingnews", "phonobyteworld"}
+          OUT, PLACES = Path("data/videos.json"), Path("data/places.json")
+          # the studio writes "📍 Kharkiv, Ukraine" in each description; "Location: ..." works too
+          PLACE_LINE = re.compile(r"^[ \t]*(?:📍|Location:)[ \t]*(?:Location:[ \t]*)?(\S.*?)[ \t]*$", re.M | re.I)
+
+          def get(url, agent=AGENT):
+              req = urllib.request.Request(url, headers={"User-Agent": agent})
+              return urllib.request.urlopen(req, timeout=30).read()
 
           def clean_title(t):
               return re.sub(r"\s*[|•\-–]?\s*#\w+", "", t).strip(" |-–•")
 
-          def summary(desc):
-              for para in re.split(r"\n\s*\n", desc):
-                  text = HASHTAG.sub("", para).strip()
-                  if len(text) > 30 and not text.lower().startswith(("source", "music", "video:", "credit")):
-                      return text if len(text) <= 240 else text[:240].rsplit(" ", 1)[0] + "…"
-              return ""
+          def entry(vid, title, desc, published, thumb, lat=None, lon=None, place=""):
+              m = PLACE_LINE.search(desc)
+              return {"id": vid, "title": clean_title(title), "url": f"https://www.youtube.com/shorts/{vid}",
+                      "published": published, "thumb": thumb or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+                      "place": place or (m.group(1) if m else ""), "lat": lat, "lon": lon}
 
-          req = urllib.request.Request(FEED, headers={"User-Agent": "Mozilla/5.0"})
-          root = ET.fromstring(urllib.request.urlopen(req, timeout=30).read())
-          videos, tags = [], Counter()
-          for e in root.findall("a:entry", NS):
-              g = e.find("media:group", NS)
-              title = e.findtext("a:title", "", NS)
-              desc = g.findtext("media:description", "", NS) if g is not None else ""
-              found = [t for t in HASHTAG.findall(f"{title} {desc}") if t.lower() not in SKIP]
-              tags.update({t.lower(): t for t in found}.values())
-              stats = g.find("media:community/media:statistics", NS) if g is not None else None
-              thumb = g.find("media:thumbnail", NS) if g is not None else None
-              vid = e.findtext("yt:videoId", "", NS)
-              videos.append({"id": vid, "title": clean_title(title), "summary": summary(desc),
-                             "tags": list(dict.fromkeys(found))[:6], "published": e.findtext("a:published", "", NS),
-                             "views": int(stats.get("views", 0)) if stats is not None else 0,
-                             "thumb": thumb.get("url") if thumb is not None else f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
-                             "url": f"https://www.youtube.com/shorts/{vid}"})
-          data = {"channel": "https://www.youtube.com/@PhonoByteWorld", "videos": videos,
-                  "topics": [t for t, _ in tags.most_common(10)]}
+          def api(method, **params):
+              return json.loads(get(API + method + "?" + urllib.parse.urlencode({**params, "key": KEY})))
+
+          def from_api():
+              """Data API: every public upload, as soon as it is live. A location set in YouTube Studio wins."""
+              ids, page = [], ""
+              while True:
+                  r = api("playlistItems", part="contentDetails", playlistId=UPLOADS, maxResults=50, pageToken=page)
+                  ids += [i["contentDetails"]["videoId"] for i in r["items"]]
+                  page = r.get("nextPageToken")
+                  if not page:
+                      break
+              videos = []
+              for i in range(0, len(ids), 50):
+                  for v in api("videos", part="snippet,status,recordingDetails", id=",".join(ids[i:i + 50]))["items"]:
+                      if v["status"].get("privacyStatus") != "public":
+                          continue
+                      s, thumbs = v["snippet"], v["snippet"].get("thumbnails", {})
+                      rec = v.get("recordingDetails", {})
+                      loc = rec.get("location") or {}
+                      videos.append(entry(v["id"], s["title"], s.get("description", ""), s["publishedAt"],
+                                          (thumbs.get("high") or thumbs.get("medium") or {}).get("url"),
+                                          loc.get("latitude"), loc.get("longitude"), rec.get("locationDescription", "")))
+              return videos
+
+          def from_feed(old):
+              """Public feed, no key needed, but cached (new uploads can take hours) and only the latest 15,
+              so it is merged with the videos already listed."""
+              root = ET.fromstring(get(FEED, agent="Mozilla/5.0"))
+              videos = {}
+              for e in root.findall("a:entry", NS):
+                  g = e.find("media:group", NS)
+                  thumb = g.find("media:thumbnail", NS) if g is not None else None
+                  vid = e.findtext("yt:videoId", "", NS)
+                  videos[vid] = entry(vid, e.findtext("a:title", "", NS),
+                                      g.findtext("media:description", "", NS) if g is not None else "",
+                                      e.findtext("a:published", "", NS), thumb.get("url") if thumb is not None else None)
+              return list(videos.values()) + [v for v in old.get("videos", []) if v.get("id") not in videos]
+
           old = json.loads(OUT.read_text()) if OUT.exists() else {}
+          videos = None
+          if KEY:
+              try:
+                  videos = from_api()
+                  source = "YouTube Data API"
+              except Exception as e:  # quota, bad key, outage: the feed still works
+                  print(f"Data API failed ({type(e).__name__} {getattr(e, 'code', '')}), using the feed")
+          else:
+              print("No YOUTUBE_API_KEY secret, using the feed")
+          if videos is None:
+              videos, source = from_feed(old), "feed"
+
+          places = json.loads(PLACES.read_text()) if PLACES.exists() else {}
+          known = dict(places)
+
+          def geocode(place):
+              """Each place name is looked up once and kept in data/places.json; a miss is tried again next run."""
+              key = place.lower()
+              if key not in places:
+                  try:
+                      hits = json.loads(get(NOMINATIM + "?" + urllib.parse.urlencode(
+                          {"q": place, "format": "json", "limit": 1, "accept-language": "en"})))
+                      if not hits:
+                          print("Place not found:", place)
+                          return None
+                      places[key] = [round(float(hits[0]["lat"]), 5), round(float(hits[0]["lon"]), 5)]
+                  except Exception as e:
+                      print(f"Geocoding failed for {place}: {e}")
+                      return None
+                  finally:
+                      time.sleep(1.1)  # Nominatim allows one request a second
+              return places[key]
+
+          for v in videos:
+              if v.get("lat") is None and v.get("place"):
+                  v["lat"], v["lon"] = geocode(v["place"]) or (None, None)
+          videos.sort(key=lambda v: v["published"], reverse=True)
+
+          data = {"channel": "https://www.youtube.com/@PhonoByteWorld", "videos": videos}
           if {k: v for k, v in old.items() if k != "updated"} != data:
               data["updated"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
               OUT.parent.mkdir(parents=True, exist_ok=True)
               OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
-          print(len(videos), "videos")
+          if places != known:
+              PLACES.write_text(json.dumps(places, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
+          print(f"{source}: {len(videos)} videos, {sum(v['lat'] is not None for v in videos)} on the map")
           PY
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/videos.json
-          git diff --cached --quiet || (git commit -m "Update latest videos" && git push)
+          git add data/
+          git diff --cached --quiet || (git commit -m "Update video map" && git push)

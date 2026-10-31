@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PhonoByte World – News in 60 seconds</title>
-<meta name="description" content="PhonoByte World: the latest news from India and around the world in short videos. Breaking news, politics, world, tech, sports and more.">
+<meta name="description" content="PhonoByte World: short news videos from India and around the world, on a map. Pick the dates, click a pin, watch the story.">
 <meta name="theme-color" content="#1A1A1A">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PhonoByte World">
 <meta property="og:title" content="PhonoByte World – News in 60 seconds">
-<meta property="og:description" content="The latest news from India and around the world in short videos.">
+<meta property="og:description" content="Short news videos from India and around the world, on a map.">
 <meta property="og:image" content="https://phonobyteworld.github.io/assets/og.png">
 <meta property="og:url" content="https://phonobyteworld.github.io/">
 <link rel="canonical" href="https://phonobyteworld.github.io/">
@@ -19,6 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -44,8 +46,7 @@
   <div class="wrap">
     <a class="mini-logo" href="#masthead"><img src="assets/logo.svg" alt=""><div><span>PhonoByte</span> World</div></a>
     <nav>
-      <a href="#top">Top stories</a>
-      <a href="#more">More stories</a>
+      <a href="#news">News map</a>
       <a href="#about">About us</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -54,18 +55,27 @@
 </div>
 
 <main>
-  <section class="sec" id="top">
+  <section class="sec" id="news">
     <div class="wrap">
-      <div class="sec-h"><h2>Top stories</h2><a href="https://www.youtube.com/@PhonoByteWorld/shorts" target="_blank" rel="noopener">All videos on YouTube →</a></div>
-      <div id="top-body"><noscript><p>See our latest videos on <a href="https://www.youtube.com/@PhonoByteWorld">YouTube</a>.</p></noscript></div>
-    </div>
-  </section>
-
-  <section class="sec" id="more" hidden>
-    <div class="wrap">
-      <div class="sec-h"><h2>More stories</h2></div>
-      <div class="topics" id="topics" style="margin-bottom:22px"></div>
-      <div class="grid" id="grid"></div>
+      <div class="sec-h"><h2>News map</h2><a href="https://www.youtube.com/@PhonoByteWorld/shorts" target="_blank" rel="noopener">All videos on YouTube →</a></div>
+      <p class="lede">Every story, where it happened. Pick a day or a range in the calendar, then click a pin to watch.</p>
+      <div class="explore">
+        <div class="map-box">
+          <div id="map" aria-label="World map of our news videos"></div>
+          <div class="map-empty" id="map-empty" hidden></div>
+        </div>
+        <aside class="panel">
+          <div class="cal" id="cal"></div>
+          <div class="ranges" id="ranges">
+            <button data-range="all">All time</button>
+            <button data-range="7">Last 7 days</button>
+            <button data-range="30">Last 30 days</button>
+            <button data-range="month">This month</button>
+          </div>
+          <div class="summary" id="summary"></div>
+          <div class="list" id="list"><noscript><p>See our videos on <a href="https://www.youtube.com/@PhonoByteWorld">YouTube</a>.</p></noscript></div>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -116,100 +126,167 @@
   </div>
 </footer>
 
-<dialog id="player">
-  <div class="player">
-    <button class="x" aria-label="Close">×</button>
-    <iframe id="frame" title="Video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-    <div class="bar"><b id="ptitle"></b><a class="btn" id="plink" target="_blank" rel="noopener">YouTube</a></div>
-  </div>
-</dialog>
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const SUB = 'https://www.youtube.com/@PhonoByteWorld?sub_confirmation=1';
-let VIDEOS = [];
+const TZ = 'Asia/Kolkata';
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const pad = n => String(n).padStart(2, '0');
+const key = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
+const dayOf = iso => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(iso));
+const shortDate = k => new Date(k + 'T12:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+const TODAY = dayOf(Date.now());
 
-$('#today').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' });
+$('#today').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: TZ });
 $('#year').textContent = new Date().getFullYear();
 
-function ago(iso) {
-  const s = (Date.now() - new Date(iso)) / 1000;
-  if (s < 3600) return Math.max(1, Math.round(s / 60)) + ' min ago';
-  if (s < 86400) return Math.round(s / 3600) + ' hr ago';
-  if (s < 7 * 86400) { const d = Math.round(s / 86400); return d + (d === 1 ? ' day ago' : ' days ago'); }
-  return new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-}
-const views = n => n ? new Intl.NumberFormat('en-IN', { notation: 'compact' }).format(n) + ' views' : '';
-const thumb = (v, badge = '') => `<span class="thumb">
-  <img src="https://i.ytimg.com/vi/${esc(v.id)}/oardefault.jpg" data-fb="${esc(v.thumb)}" alt="" loading="lazy"
-       onload="if(this.naturalWidth <= 120) fallback(this)" onerror="fallback(this)">
-  ${badge ? `<span class="badge">${esc(badge)}</span>` : ''}<span class="play"></span></span>`;
+let VIDEOS = [];
+let range = null;                     // null = all time, else { from, to } as YYYY-MM-DD in IST
+let shown = { y: +TODAY.slice(0, 4), m: +TODAY.slice(5, 7) - 1 };
+const perDay = {};
+
+// ---- map ----
+const map = L.map('map', { worldCopyJump: true, minZoom: 2, maxZoom: 18, scrollWheelZoom: false })
+  .setView([22, 40], 2);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+  maxZoom: 18,
+  attribution: 'Tiles &copy; <a href="https://www.esri.com/" target="_blank" rel="noopener">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors',
+}).addTo(map);
+// the page keeps scrolling over the map until it is clicked; buttons and pinch always zoom
+map.on('click focus', () => map.scrollWheelZoom.enable());
+map.getContainer().addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
+const pins = L.layerGroup().addTo(map);
+const markers = {};
+
+const thumb = v => `<img src="https://i.ytimg.com/vi/${esc(v.id)}/oardefault.jpg" data-fb="${esc(v.thumb)}" alt="" loading="lazy"
+  onload="if(this.naturalWidth <= 120) fallback(this)" onerror="fallback(this)">`;
 function fallback(img) {
   // YouTube answers a missing vertical thumbnail with a 120 px placeholder instead of an error
   if (img.dataset.fb && !img.src.endsWith(img.dataset.fb)) img.src = img.dataset.fb;
 }
-const meta = (v, full) => `<div class="meta">${v.tags?.[0] ? `<span class="tag">#${esc(v.tags[0])}</span>` : ''}<span>${ago(v.published)}</span>${full && views(v.views) ? `<span>· ${views(v.views)}</span>` : ''}</div>`;
-const fresh = v => Date.now() - new Date(v.published) < 6 * 3600e3;
+const spot = v => `${(+v.lat).toFixed(3)},${(+v.lon).toFixed(3)}`;
+const icon = n => L.divIcon({ className: 'pin', html: `<div class="drop"><i>${n > 1 ? n : ''}</i></div>`,
+  iconSize: [30, 38], iconAnchor: [15, 37], tooltipAnchor: [0, -34], popupAnchor: [0, -34] });
 
-function soon() {
-  return `<div class="soon">
-    <div class="poster"><img src="assets/logo.svg" alt=""><span>Coming soon</span></div>
-    <div><div class="kicker" style="color:var(--accent)">PhonoByte World</div>
-      <h1>Our first stories are on the way</h1>
-      <p>Short news videos from India and around the world, starting very soon. Subscribe on YouTube so you see the first one.</p>
-      <a class="btn" href="${SUB}" target="_blank" rel="noopener">Subscribe on YouTube</a></div>
-  </div>`;
+function drawPins(list) {
+  pins.clearLayers();
+  for (const k in markers) delete markers[k];
+  const groups = {};
+  list.filter(v => v.lat != null && v.lon != null).forEach(v => (groups[spot(v)] ||= []).push(v));
+  for (const [k, vs] of Object.entries(groups)) {
+    const m = L.marker([vs[0].lat, vs[0].lon], { icon: icon(vs.length), title: vs[0].place, riseOnHover: true }).addTo(pins);
+    if (vs.length === 1) {
+      const v = vs[0];
+      m.bindTooltip(`<div class="tip">${thumb(v)}<div><b>${esc(v.title)}</b><span>${esc(v.place)} · ${shortDate(dayOf(v.published))}</span><em>Click to watch on YouTube</em></div></div>`,
+        { direction: 'top', className: 'pin-tip', opacity: 1 });
+      m.on('click', () => window.open(v.url, '_blank', 'noopener'));
+    } else {
+      m.bindTooltip(`<b>${esc(vs[0].place)}</b> · ${vs.length} videos`, { direction: 'top', className: 'pin-tip small', opacity: 1 });
+      m.bindPopup(`<div class="pop"><b>${esc(vs[0].place)}</b>${vs.map(v => `<a href="${esc(v.url)}" target="_blank" rel="noopener">${thumb(v)}<span>${esc(v.title)}<small>${shortDate(dayOf(v.published))}</small></span></a>`).join('')}</div>`,
+        { maxWidth: 300, className: 'pin-pop' });
+    }
+    markers[k] = m;
+  }
+  const ms = Object.values(markers);
+  if (ms.length) map.fitBounds(L.featureGroup(ms).getBounds(), { padding: [50, 50], maxZoom: 5 });
+  else map.setView([22, 40], 2);
 }
 
-function render(data) {
-  VIDEOS = (data.videos || []).filter(v => v.id);
-  if (!VIDEOS.length) { $('#top-body').innerHTML = soon(); return; }
-  const [lead, ...rest] = VIDEOS;
-  const side = rest.slice(0, 4);
-  $('#top-body').innerHTML = `<div class="top" style="${side.length ? '' : 'grid-template-columns:1fr'}">
-    <article class="lead">
-      <div data-id="${esc(lead.id)}">${thumb(lead, fresh(lead) ? 'Just in' : 'Top story')}</div>
-      <div><div class="kicker">${esc(lead.tags?.[0] ? '#' + lead.tags[0] : 'Top story')}</div>
-        <h1 data-id="${esc(lead.id)}">${esc(lead.title)}</h1>
-        ${lead.summary ? `<p>${esc(lead.summary)}</p>` : ''}
-        ${meta(lead, true)}
-        <div style="margin-top:18px"><button class="btn dark" data-id="${esc(lead.id)}">▶ Watch</button></div></div>
-    </article>
-    ${side.length ? `<aside class="side"><h3>Latest</h3>${side.map(v => `<div class="row" data-id="${esc(v.id)}">${thumb(v)}<div><b>${esc(v.title)}</b>${meta(v)}</div></div>`).join('')}</aside>` : ''}
-  </div>`;
-  const topics = data.topics || [];
-  $('#topics').innerHTML = topics.length ? `<button class="on" data-topic="">All</button>` + topics.map(t => `<button data-topic="${esc(t)}">#${esc(t)}</button>`).join('') : '';
-  showGrid('');
+// ---- calendar ----
+const inRange = k => !range || (k >= range.from && k <= range.to);
+
+function drawCalendar() {
+  const { y, m } = shown;
+  const first = (new Date(y, m, 1).getDay() + 6) % 7;       // weeks start on Monday
+  const days = new Date(y, m + 1, 0).getDate();
+  let cells = '';
+  for (let i = 0; i < first; i++) cells += '<span></span>';
+  for (let d = 1; d <= days; d++) {
+    const k = key(y, m, d), n = perDay[k] || 0;
+    const cls = [n && 'has', range && inRange(k) && 'in', range && k === range.from && 'start', range && k === range.to && 'end',
+                 k === TODAY && 'today', k > TODAY && 'future'].filter(Boolean).join(' ');
+    cells += `<button class="${cls}" data-day="${k}" title="${n ? n + (n === 1 ? ' video' : ' videos') : 'No videos'}">${d}${n ? `<i>${n}</i>` : ''}</button>`;
+  }
+  $('#cal').innerHTML = `<div class="cal-h"><button data-month="-1" aria-label="Previous month">‹</button>
+    <b>${MONTHS[m]} ${y}</b><button data-month="1" aria-label="Next month">›</button></div>
+    <div class="cal-g">${['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map(d => `<em>${d}</em>`).join('')}${cells}</div>`;
 }
 
-function showGrid(topic) {
-  const list = topic ? VIDEOS.filter(v => (v.tags || []).some(t => t.toLowerCase() === topic.toLowerCase())) : VIDEOS.slice(5);
-  $('#grid').innerHTML = list.slice(0, 30).map(v => `<div class="card" data-id="${esc(v.id)}">${thumb(v, fresh(v) ? 'Just in' : '')}<b>${esc(v.title)}</b>${meta(v)}</div>`).join('');
-  $('#more').hidden = !list.length && !topic;
-  document.querySelectorAll('#topics button').forEach(b => b.classList.toggle('on', b.dataset.topic === topic));
+function setRange(r) {
+  range = r;
+  document.querySelectorAll('#ranges button').forEach(b => b.classList.toggle('on', !r && b.dataset.range === 'all'));
+  update();
+}
+
+function pickDay(k) {
+  // first click picks one day, a second click on another day extends it into a range, a third starts over
+  if (range && range.from === range.to && range.from !== k && !range.done) {
+    const [from, to] = [range.from, k].sort();
+    setRange({ from, to, done: true });
+  } else if (range && range.from === k && range.to === k) setRange(null);
+  else setRange({ from: k, to: k });
+}
+
+function update() {
+  const list = VIDEOS.filter(v => inRange(dayOf(v.published)));
+  const mapped = list.filter(v => v.lat != null).length;
+  const when = !range ? 'All time' : range.from === range.to ? shortDate(range.from) : `${shortDate(range.from)} – ${shortDate(range.to)}`;
+  $('#summary').innerHTML = `<b>${when}</b><span>${list.length} ${list.length === 1 ? 'video' : 'videos'}${list.length ? `, ${mapped} on the map` : ''}</span>`;
+  $('#list').innerHTML = list.length ? list.map(v => `<div class="item">
+      <a class="t" href="${esc(v.url)}" target="_blank" rel="noopener">${thumb(v)}</a>
+      <div><a href="${esc(v.url)}" target="_blank" rel="noopener"><b>${esc(v.title)}</b></a>
+        <div class="meta"><span>${shortDate(dayOf(v.published))}</span>${v.lat != null
+          ? `<button class="place" data-spot="${spot(v)}">📍 ${esc(v.place || 'On the map')}</button>`
+          : `<span class="none">${v.place ? esc(v.place) + ' (not found)' : 'No location'}</span>`}</div></div>
+    </div>`).join('') : `<p class="empty">${VIDEOS.length ? 'No videos on these dates. Pick other days or “All time”.' : ''}</p>`;
+  drawCalendar();
+  drawPins(list);
+}
+
+function empty() {
+  $('#map-empty').hidden = false;
+  $('#map-empty').innerHTML = `<div><img src="assets/logo.svg" alt=""><h3>Our first stories are on the way</h3>
+    <p>Short news videos from India and around the world, pinned where they happened.</p>
+    <a class="btn" href="${SUB}" target="_blank" rel="noopener">Subscribe on YouTube</a></div>`;
 }
 
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-topic]');
-  if (t) return showGrid(t.dataset.topic);
-  const el = e.target.closest('[data-id]');
-  if (!el) return;
-  const v = VIDEOS.find(x => x.id === el.dataset.id);
-  if (!v) return;
-  $('#frame').src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?autoplay=1&rel=0&playsinline=1`;
-  $('#ptitle').textContent = v.title;
-  $('#plink').href = v.url;
-  $('#player').showModal();
+  const t = e.target.closest('[data-day],[data-month],[data-range],[data-spot]');
+  if (!t) return;
+  if (t.dataset.day) return pickDay(t.dataset.day);
+  if (t.dataset.month) {
+    const d = new Date(shown.y, shown.m + +t.dataset.month, 1);
+    shown = { y: d.getFullYear(), m: d.getMonth() };
+    return drawCalendar();
+  }
+  if (t.dataset.spot) {
+    const m = markers[t.dataset.spot];
+    if (!m) return;
+    map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 6), { duration: .8 });
+    map.once('moveend', () => m.openTooltip());
+    return $('#map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  const r = t.dataset.range;
+  if (r === 'all') return setRange(null);
+  if (r === 'month') {
+    const { y, m } = shown;
+    setRange({ from: key(y, m, 1), to: key(y, m, new Date(y, m + 1, 0).getDate()), done: true });
+  } else setRange({ from: dayOf(Date.now() - (r - 1) * 864e5), to: TODAY, done: true });
+  document.querySelectorAll('#ranges button').forEach(b => b.classList.toggle('on', b === t));
 });
-const close = () => { $('#player').close(); };
-$('#player .x').onclick = close;
-$('#player').addEventListener('click', e => { if (e.target.id === 'player') close(); });
-$('#player').addEventListener('close', () => { $('#frame').src = 'about:blank'; });
 
 new IntersectionObserver(([e]) => $('#sections').classList.toggle('stuck', !e.isIntersecting)).observe($('#masthead'));
 
-fetch('data/videos.json', { cache: 'no-store' }).then(r => r.json()).then(render).catch(() => render({ videos: [] }));
+fetch('data/videos.json', { cache: 'no-store' }).then(r => r.json()).catch(() => ({})).then(data => {
+  VIDEOS = (data.videos || []).filter(v => v.id && v.published).sort((a, b) => b.published.localeCompare(a.published));
+  VIDEOS.forEach(v => { const k = dayOf(v.published); perDay[k] = (perDay[k] || 0) + 1; });
+  if (VIDEOS.length) shown = { y: +dayOf(VIDEOS[0].published).slice(0, 4), m: +dayOf(VIDEOS[0].published).slice(5, 7) - 1 };
+  else empty();
+  setRange(null);
+});
 </script>
 </body>
 </html>
