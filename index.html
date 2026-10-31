@@ -157,8 +157,9 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_M
 }).addTo(map);
 // Esri draws Kashmir and Aksai Chin with the international lines; India's official land border goes on top
 fetch('assets/india-border.geojson').then(r => r.json()).then(g => {
-  L.geoJSON(g, { interactive: false, style: { color: '#fff', weight: 3.5, opacity: .6 } }).addTo(map);
-  L.geoJSON(g, { interactive: false, style: { color: '#a77fae', weight: 1.7, opacity: 1 },
+  // same grey line with a light casing as Esri's own country borders, so it blends in
+  L.geoJSON(g, { interactive: false, style: { color: '#fff', weight: 3, opacity: .5 } }).addTo(map);
+  L.geoJSON(g, { interactive: false, style: { color: '#85837b', weight: 1.3, opacity: 1 },
                  attribution: 'India border: Survey of India via DataMeet' }).addTo(map);
 }).catch(() => {});
 // the page keeps scrolling over the map until it is clicked; buttons and pinch always zoom
