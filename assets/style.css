@@ -71,21 +71,23 @@ button { font: inherit; cursor: pointer; }
 .map-empty h3 { font-family: var(--head); text-transform: uppercase; font-size: 26px; line-height: 1.1; margin: 0 0 8px; }
 .map-empty p { color: #cfcfcf; margin: 0 0 18px; }
 
-.pin { background: none; border: 0; }
+.maplibregl-marker.pin { width: 36px; height: 36px; }
 .pin span { display: block; width: 36px; height: 36px; font-size: 32px; line-height: 36px; text-align: center; cursor: pointer;
             font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
             filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .35)); transform-origin: 50% 95%; transition: transform .15s; }
 .pin:hover span { transform: scale(1.2); }
 .pin b { position: absolute; right: -6px; top: -4px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--ink);
          color: #fff; font: 700 11px/18px "Poppins", sans-serif; text-align: center; border: 1.5px solid #fff; }
-.pin-tip { padding: 8px; border-radius: 10px; border: 0; box-shadow: 0 6px 20px rgba(0, 0, 0, .25); font-family: "Poppins", sans-serif; }
-.pin-tip.small { padding: 6px 10px; font-size: 13px; }
+.pin-tip { pointer-events: none; }
+.pin-tip .maplibregl-popup-content, .pin-pop .maplibregl-popup-content { padding: 8px; border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .25); font-family: "Poppins", sans-serif; }
+.pin-tip.small .maplibregl-popup-content { padding: 6px 10px; font-size: 13px; }
+.pin-pop .maplibregl-popup-content { padding: 12px 14px; }
 .tip { display: grid; grid-template-columns: 62px 200px; gap: 10px; align-items: start; white-space: normal; }
 .tip img { width: 62px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 6px; background: #222; }
 .tip b { display: block; font-size: 13.5px; line-height: 1.3; margin-bottom: 4px; }
 .tip span { display: block; font-size: 12px; color: var(--muted); }
 .tip em { display: block; margin-top: 6px; font-size: 12px; font-style: normal; font-weight: 600; color: var(--accent-ink); }
-.pin-pop .leaflet-popup-content { margin: 12px; font-family: "Poppins", sans-serif; }
 .pop > b { display: block; margin-bottom: 6px; font-size: 14px; }
 .pop a { display: grid; grid-template-columns: 40px 1fr; gap: 10px; align-items: center; padding: 6px 0; border-top: 1px solid var(--line);
          color: var(--ink) !important; }

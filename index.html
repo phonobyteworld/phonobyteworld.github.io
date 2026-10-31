@@ -19,8 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
+      integrity="sha384-uTttxo/aOKbdE5RlD/SPzSDoDmNvGlUYPjONi2MN/b7c9HPSvW07OIuyP7uL6jxK" crossorigin="">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -126,8 +126,8 @@
   </div>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"
+        integrity="sha384-5+cfbwT0iiub6VsQAdn6yz16nr6sDiQoHx6tm4O8OVYXHYOxcffFmCJBL0dgdvGp" crossorigin=""></script>
 <script>
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -149,24 +149,66 @@ let shown = { y: +TODAY.slice(0, 4), m: +TODAY.slice(5, 7) - 1 };
 const perDay = {};
 
 // ---- map ----
-const map = L.map('map', { worldCopyJump: true, minZoom: 2, maxZoom: 18, scrollWheelZoom: false })
-  .setView([22, 40], 2);
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-  maxZoom: 18,
-  attribution: 'Tiles &copy; <a href="https://www.esri.com/" target="_blank" rel="noopener">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors',
-}).addTo(map);
-// Esri draws Kashmir and Aksai Chin with the international lines; India's official land border goes on top
-fetch('assets/india-border.geojson').then(r => r.json()).then(g => {
-  // same grey line with a light casing as Esri's own country borders, so it blends in
-  L.geoJSON(g, { interactive: false, style: { color: '#fff', weight: 3, opacity: .5 } }).addTo(map);
-  L.geoJSON(g, { interactive: false, style: { color: '#85837b', weight: 1.3, opacity: 1 },
-                 attribution: 'India border: Survey of India via DataMeet' }).addTo(map);
-}).catch(() => {});
-// the page keeps scrolling over the map until it is clicked; buttons and pinch always zoom
-map.on('click focus', () => map.scrollWheelZoom.enable());
-map.getContainer().addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
-const pins = L.layerGroup().addTo(map);
-const markers = {};
+// OpenFreeMap: free, no key, no limits, commercial use allowed. VersaTiles takes over if it does not answer.
+const STYLES = ['https://tiles.openfreemap.org/styles/liberty', 'https://tiles.versatiles.org/assets/styles/colorful/style.json'];
+const WORLD = { center: [40, 22], zoom: 1.2 };
+const map = new maplibregl.Map({ container: 'map', style: STYLES[0], ...WORLD, minZoom: 0.8, maxZoom: 18,
+  cooperativeGestures: true, attributionControl: { compact: true, customAttribution: 'India border: Survey of India via DataMeet · Natural Earth' } });
+map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+let styled = false, fellBack = false;
+const fallBack = () => { if (!styled && !fellBack) { fellBack = true; map.setStyle(STYLES[1]); } };
+map.on('error', fallBack);
+setTimeout(fallBack, 8000);
+map.on('style.load', () => { styled = true; customise(); });
+
+// India's view of its borders: disputed lines are only drawn when they lie wholly outside South Asia (tiles merge
+// nearby disputed lines into one feature, so one reaching into the region hides it all) and India's official land
+// border is drawn in the map's own country-border style
+const OUTSIDE_SOUTH_ASIA = { type: 'Polygon', coordinates: [
+  [[-180, -85], [180, -85], [180, 85], [-180, 85], [-180, -85]],
+  [[60, 5], [60, 38.5], [101, 38.5], [101, 5], [60, 5]]] };
+const ENGLISH = ['coalesce', ['get', 'name:en'], ['get', 'name_en'], ['get', 'name:latin'], ['get', 'name']];
+// region names other countries give to parts of India
+const NOT_INDIA = ['Gilgit-Baltistan', 'Gilgit Baltistan', 'Azad Kashmir', 'Azad Jammu and Kashmir', 'Azad Jammu & Kashmir',
+  'South Tibet', 'Zangnan'];
+// below zoom 5 OpenFreeMap's country borders are generalised lines that draw the Line of Control and the Aksai Chin
+// line as plain borders; Natural Earth's land borders as India sees them (lines along India left out) replace them
+const LOW_ZOOM = 5;
+function customise() {
+  let firstLabel, countries, border = { color: '#686769', width: ['interpolate', ['linear'], ['zoom'], 3, 1, 5, 1.2, 12, 3] };
+  for (const l of map.getStyle().layers) {
+    const disputed = l.type === 'line' && /^boundar/.test(l['source-layer'] || '') && /disput/.test(l.id);
+    try {
+      if (l.type === 'symbol') {
+        firstLabel ||= l.id;
+        if (JSON.stringify(l.layout?.['text-field'] ?? '').includes('name')) {
+          map.setLayoutProperty(l.id, 'text-field', ENGLISH);
+          map.setFilter(l.id, ['all', l.filter ?? true, ['!', ['in', ENGLISH, ['literal', NOT_INDIA]]]]);
+        }
+      }
+      if (disputed) map.setFilter(l.id, ['all', l.filter ?? true, ['within', OUTSIDE_SOUTH_ASIA]]);
+      else if (l.id === 'boundary_2') {
+        countries = l;
+        border = { color: l.paint['line-color'], width: l.paint['line-width'] };
+      }
+    } catch (e) {
+      if (disputed) map.setLayoutProperty(l.id, 'visibility', 'none');   // a filter in the old syntax cannot take `within`
+    }
+  }
+  if (countries) {
+    map.setLayerZoomRange(countries.id, Math.max(countries.minzoom ?? 0, LOW_ZOOM), countries.maxzoom ?? 24);
+    map.addSource('world', { type: 'geojson', data: 'assets/world-borders.geojson' });
+    map.addLayer({ id: 'world-borders', type: 'line', source: 'world', maxzoom: LOW_ZOOM, layout: countries.layout ?? {},
+      paint: countries.paint }, firstLabel);
+  }
+  map.addSource('india', { type: 'geojson', data: 'assets/india-border.geojson' });
+  map.addLayer({ id: 'india-casing', type: 'line', source: 'india', paint: { 'line-color': '#fff', 'line-opacity': .5,
+    'line-width': ['interpolate', ['linear'], ['zoom'], 3, 3, 12, 6] } }, firstLabel);
+  map.addLayer({ id: 'india-border', type: 'line', source: 'india', paint: { 'line-color': border.color, 'line-width': border.width } }, firstLabel);
+}
+
+let markers = {};
+const hover = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 30, className: 'pin-tip', maxWidth: '300px' });
 
 const thumb = v => `<img src="https://i.ytimg.com/vi/${esc(v.id)}/oardefault.jpg" data-fb="${esc(v.thumb)}" alt="" loading="lazy"
   onload="if(this.naturalWidth <= 120) fallback(this)" onerror="fallback(this)">`;
@@ -175,31 +217,42 @@ function fallback(img) {
   if (img.dataset.fb && !img.src.endsWith(img.dataset.fb)) img.src = img.dataset.fb;
 }
 const spot = v => `${(+v.lat).toFixed(3)},${(+v.lon).toFixed(3)}`;
-const icon = n => L.divIcon({ className: 'pin', html: `<span>📍</span>${n > 1 ? `<b>${n}</b>` : ''}`,
-  iconSize: [36, 36], iconAnchor: [18, 32], tooltipAnchor: [0, -30], popupAnchor: [0, -30] });
 
 function drawPins(list) {
-  pins.clearLayers();
-  for (const k in markers) delete markers[k];
+  Object.values(markers).forEach(m => m.remove());
+  markers = {};
+  hover.remove();
   const groups = {};
   list.filter(v => v.lat != null && v.lon != null).forEach(v => (groups[spot(v)] ||= []).push(v));
   for (const [k, vs] of Object.entries(groups)) {
-    const m = L.marker([vs[0].lat, vs[0].lon], { icon: icon(vs.length), title: vs[0].place, riseOnHover: true }).addTo(pins);
-    if (vs.length === 1) {
-      const v = vs[0];
-      m.bindTooltip(`<div class="tip">${thumb(v)}<div><b>${esc(v.title)}</b><span>${esc(v.place)} · ${shortDate(dayOf(v.published))}</span><em>Click to watch on YouTube</em></div></div>`,
-        { direction: 'top', className: 'pin-tip', opacity: 1 });
-      m.on('click', () => window.open(v.url, '_blank', 'noopener'));
-    } else {
-      m.bindTooltip(`<b>${esc(vs[0].place)}</b> · ${vs.length} videos`, { direction: 'top', className: 'pin-tip small', opacity: 1 });
-      m.bindPopup(`<div class="pop"><b>${esc(vs[0].place)}</b>${vs.map(v => `<a href="${esc(v.url)}" target="_blank" rel="noopener">${thumb(v)}<span>${esc(v.title)}<small>${shortDate(dayOf(v.published))}</small></span></a>`).join('')}</div>`,
-        { maxWidth: 300, className: 'pin-pop' });
-    }
+    const el = document.createElement('div');
+    el.className = 'pin';
+    el.innerHTML = `<span>📍</span>${vs.length > 1 ? `<b>${vs.length}</b>` : ''}`;
+    // the emoji's tip is 4 px above the bottom of its box
+    const m = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, 4] }).setLngLat([vs[0].lon, vs[0].lat]).addTo(map);
+    const v = vs[0];
+    m.tip = vs.length === 1
+      ? `<div class="tip">${thumb(v)}<div><b>${esc(v.title)}</b><span>${esc(v.place)} · ${shortDate(dayOf(v.published))}</span><em>Click to watch on YouTube</em></div></div>`
+      : `<b>${esc(v.place)}</b> · ${vs.length} videos`;
+    el.addEventListener('mouseenter', () => {
+      hover.setLngLat(m.getLngLat()).setHTML(m.tip).addTo(map);
+      hover.getElement().classList.toggle('small', vs.length > 1);
+    });
+    el.addEventListener('mouseleave', () => hover.remove());
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      if (vs.length === 1) return window.open(v.url, '_blank', 'noopener');
+      hover.remove();
+      new maplibregl.Popup({ offset: 30, className: 'pin-pop', maxWidth: '300px' }).setLngLat(m.getLngLat())
+        .setHTML(`<div class="pop"><b>${esc(v.place)}</b>${vs.map(v => `<a href="${esc(v.url)}" target="_blank" rel="noopener">${thumb(v)}<span>${esc(v.title)}<small>${shortDate(dayOf(v.published))}</small></span></a>`).join('')}</div>`)
+        .addTo(map);
+    });
     markers[k] = m;
   }
-  const ms = Object.values(markers);
-  if (ms.length) map.fitBounds(L.featureGroup(ms).getBounds(), { padding: [50, 50], maxZoom: 5 });
-  else map.setView([22, 40], 2);
+  const pts = Object.values(markers).map(m => m.getLngLat());
+  if (!pts.length) return map.jumpTo(WORLD);
+  const bounds = pts.reduce((b, p) => b.extend(p), new maplibregl.LngLatBounds(pts[0], pts[0]));
+  map.fitBounds(bounds, { padding: 60, maxZoom: 5, duration: 0 });
 }
 
 // ---- calendar ----
@@ -272,8 +325,8 @@ document.addEventListener('click', e => {
   if (t.dataset.spot) {
     const m = markers[t.dataset.spot];
     if (!m) return;
-    map.flyTo(m.getLatLng(), Math.max(map.getZoom(), 6), { duration: .8 });
-    map.once('moveend', () => m.openTooltip());
+    map.flyTo({ center: m.getLngLat(), zoom: Math.max(map.getZoom(), 6), duration: 800 });
+    map.once('moveend', () => hover.setLngLat(m.getLngLat()).setHTML(m.tip).addTo(map));
     return $('#map').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
   const r = t.dataset.range;

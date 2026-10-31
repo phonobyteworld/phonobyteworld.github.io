@@ -3,12 +3,13 @@
 News map for [PhonoByte World](https://www.youtube.com/@PhonoByteWorld), served with GitHub Pages. Plain HTML,
 CSS and a little JavaScript; no build step.
 
-The front page is a world map (Esri World Street Map tiles: English names and country borders, via
-[Leaflet](https://leafletjs.com/)) with a pin for every video that has a location, and a month calendar next to it.
+The front page is a world map ([OpenFreeMap](https://openfreemap.org/) "liberty" vector tiles with English names,
+drawn by [MapLibre GL JS](https://maplibre.org/)) with a pin for every video that has a location, and a month calendar
+next to it.
 Click a day, then another day, to pick a range (or use All time / Last 7 days / Last 30 days / This month); the pins
 and the list below the calendar show only the videos published in that range (dates in IST). Clicking a pin opens
 the video on YouTube; a pin with several videos at the same place opens a list. The map zooms with the +/− buttons,
-pinch, double-click, or the mouse wheel once the map has been clicked. Videos without a location are in the list only.
+pinch, double-click, or Ctrl/⌘ + mouse wheel (two fingers on phones), so the page still scrolls over it. Videos without a location are in the list only.
 
 | File | Purpose |
 | --- | --- |
@@ -51,13 +52,20 @@ hand).
 GitHub pauses scheduled workflows after 60 days without commits to the repo; if the channel goes quiet that long,
 re-enable it under Actions.
 
-India's border: Esri (like every OpenStreetMap-based map) draws Kashmir and Aksai Chin with the international
-lines, so the page draws India's official land boundary on top, all the way round (`assets/india-border.geojson`:
-DataMeet's CC0 `india-composite.geojson`, after the Survey of India, with the coastline removed — points within 4 km
-of Natural Earth's 10 m coastline — and simplified to about 250 m). Esri's own lines and labels stay visible under it.
+India's border: OpenStreetMap-based maps draw Kashmir and Aksai Chin with the international lines, so the page
+shows India's official view:
 
-Map tiles: Esri's tiles are free without a key but need the on-screen attribution (shown bottom right) and light
-use. For heavy traffic switch to a keyed provider (MapTiler, Mapbox, Stadia) in `index.html`.
+- `assets/india-border.geojson`, India's official land boundary all the way round (DataMeet's CC0
+  `india-composite.geojson`, after the Survey of India, with the coastline removed — points within 4 km of Natural
+  Earth's 10 m coastline — and simplified to about 250 m), drawn in the map's own country-border grey.
+- Disputed lines are hidden unless they lie wholly outside South Asia (Crimea, Western Sahara etc. still show).
+- Below zoom 5 OpenFreeMap's generalised country borders draw the Line of Control as a plain border, so
+  `assets/world-borders.geojson` replaces them there: Natural Earth's 50 m land borders (public domain) as India sees
+  them (`FCLASS_IN`), without the lines along India's border or inside Jammu, Kashmir and Ladakh.
+- Region names like Gilgit-Baltistan and Azad Kashmir are hidden (`NOT_INDIA` in `index.html`).
+
+Map tiles: OpenFreeMap is free with no key and no limits, commercial use included; the attribution is shown bottom
+right. If it does not answer within 8 s the page switches to VersaTiles (free, but a rate-limited public server).
 
 ## Google OAuth consent screen (Branding page)
 
