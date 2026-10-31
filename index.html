@@ -155,6 +155,12 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_M
   maxZoom: 18,
   attribution: 'Tiles &copy; <a href="https://www.esri.com/" target="_blank" rel="noopener">Esri</a>, HERE, Garmin, &copy; OpenStreetMap contributors',
 }).addTo(map);
+// Esri draws Kashmir with the international lines; India's official northern border goes on top
+fetch('assets/india-north.geojson').then(r => r.json()).then(g => {
+  L.geoJSON(g, { interactive: false, style: { color: '#fff', weight: 3.5, opacity: .6 } }).addTo(map);
+  L.geoJSON(g, { interactive: false, style: { color: '#a77fae', weight: 1.7, opacity: 1 },
+                 attribution: 'India border: Survey of India via DataMeet' }).addTo(map);
+}).catch(() => {});
 // the page keeps scrolling over the map until it is clicked; buttons and pinch always zoom
 map.on('click focus', () => map.scrollWheelZoom.enable());
 map.getContainer().addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
