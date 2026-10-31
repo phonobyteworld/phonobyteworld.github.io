@@ -51,10 +51,10 @@ hand).
 GitHub pauses scheduled workflows after 60 days without commits to the repo; if the channel goes quiet that long,
 re-enable it under Actions.
 
-India's border: Esri (like every OpenStreetMap-based map) draws Kashmir with the international lines, so the page
-draws India's official northern boundary on top (`assets/india-north.geojson`: the part of DataMeet's CC0
-`india-composite.geojson`, from Survey of India / LSIB, north of 32.2° N, simplified to about 400 m). Esri's own
-lines and labels inside it stay visible.
+India's border: Esri (like every OpenStreetMap-based map) draws Kashmir and Aksai Chin with the international
+lines, so the page draws India's official land boundary on top, all the way round (`assets/india-border.geojson`:
+DataMeet's CC0 `india-composite.geojson`, after the Survey of India, with the coastline removed — points within 4 km
+of Natural Earth's 10 m coastline — and simplified to about 250 m). Esri's own lines and labels stay visible under it.
 
 Map tiles: Esri's tiles are free without a key but need the on-screen attribution (shown bottom right) and light
 use. For heavy traffic switch to a keyed provider (MapTiler, Mapbox, Stadia) in `index.html`.
