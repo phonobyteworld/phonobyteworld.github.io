@@ -1,6 +1,46 @@
 {
  "channel": "https://www.youtube.com/@PhonoByteWorld",
- "videos": [],
- "topics": [],
- "updated": "2026-10-31T08:25:01+00:00"
+ "videos": [
+  {
+   "id": "pqEybCkVvEI",
+   "title": "India-UAE Visit: Dr. S. Jaishankar Shares Highlights",
+   "summary": "Dr. S. Jaishankar shared glimpses from his diplomatic visit to the United Arab Emirates.",
+   "tags": [
+    "India",
+    "UAE",
+    "Diplomacy",
+    "DrSJaishankar"
+   ],
+   "published": "2026-10-31T11:00:32+00:00",
+   "views": 5,
+   "thumb": "https://i1.ytimg.com/vi/pqEybCkVvEI/hqdefault.jpg",
+   "url": "https://www.youtube.com/shorts/pqEybCkVvEI"
+  },
+  {
+   "id": "t1nPtAdLks4",
+   "title": "ISRO GSLV-F18/NVS-03 Mission Liftoff Highlights",
+   "summary": "ISRO successfully launched the GSLV-F18/NVS-03 mission. Watch the journey from lift-off to spacecraft separation.",
+   "tags": [
+    "ISRO",
+    "GSLVF18",
+    "NVS03",
+    "SpaceX"
+   ],
+   "published": "2026-10-31T10:40:05+00:00",
+   "views": 3,
+   "thumb": "https://i1.ytimg.com/vi/t1nPtAdLks4/hqdefault.jpg",
+   "url": "https://www.youtube.com/shorts/t1nPtAdLks4"
+  }
+ ],
+ "topics": [
+  "India",
+  "UAE",
+  "Diplomacy",
+  "DrSJaishankar",
+  "ISRO",
+  "GSLVF18",
+  "NVS03",
+  "SpaceX"
+ ],
+ "updated": "2026-10-31T15:11:54+00:00"
 }
