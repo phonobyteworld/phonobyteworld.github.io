@@ -153,8 +153,11 @@ const perDay = {};
 const STYLES = ['https://tiles.openfreemap.org/styles/liberty', 'https://tiles.versatiles.org/assets/styles/colorful/style.json'];
 const WORLD = { center: [40, 22], zoom: 1.2 };
 const map = new maplibregl.Map({ container: 'map', style: STYLES[0], ...WORLD, minZoom: 0.8, maxZoom: 18,
-  cooperativeGestures: true, attributionControl: { compact: true, customAttribution: 'India border: Survey of India via DataMeet · Natural Earth' } });
+  cooperativeGestures: true, attributionControl: { compact: true } });
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
+// OpenStreetMap's attribution guideline allows folding the credit into the (i) button after five seconds
+map.once('load', () => setTimeout(() =>
+  document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show'), 5000));
 let styled = false, fellBack = false;
 const fallBack = () => { if (!styled && !fellBack) { fellBack = true; map.setStyle(STYLES[1]); } };
 map.on('error', fallBack);
