@@ -32,7 +32,7 @@ jobs:
           NS = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015",
                 "media": "http://search.yahoo.com/mrss/"}
           OUT, PLACES = Path("data/videos.json"), Path("data/places.json")
-          # the studio writes "📍 Kharkiv, Ukraine" in each description; "Location: ..." works too
+          # a "📍 Kharkiv, Ukraine" line in the description; "Location: ..." works too
           PLACE_LINE = re.compile(r"^[ \t]*(?:📍|Location:)[ \t]*(?:Location:[ \t]*)?(\S.*?)[ \t]*$", re.M | re.I)
 
           def get(url, agent=AGENT):
