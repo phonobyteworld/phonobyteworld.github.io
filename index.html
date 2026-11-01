@@ -346,8 +346,7 @@ new IntersectionObserver(([e]) => $('#sections').classList.toggle('stuck', !e.is
 fetch('data/videos.json', { cache: 'no-store' }).then(r => r.json()).catch(() => ({})).then(data => {
   VIDEOS = (data.videos || []).filter(v => v.id && v.published).sort((a, b) => b.published.localeCompare(a.published));
   VIDEOS.forEach(v => { const k = dayOf(v.published); perDay[k] = (perDay[k] || 0) + 1; });
-  if (VIDEOS.length) shown = { y: +dayOf(VIDEOS[0].published).slice(0, 4), m: +dayOf(VIDEOS[0].published).slice(5, 7) - 1 };
-  else empty();
+  if (!VIDEOS.length) empty();
   setRange(null);
 });
 </script>

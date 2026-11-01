@@ -71,6 +71,11 @@ button { font: inherit; cursor: pointer; }
 .map-empty h3 { font-family: var(--head); text-transform: uppercase; font-size: 26px; line-height: 1.1; margin: 0 0 8px; }
 .map-empty p { color: #cfcfcf; margin: 0 0 18px; }
 
+#map .maplibregl-ctrl-attrib { font-size: 8px; line-height: 12px; }
+#map .maplibregl-ctrl-attrib.maplibregl-compact { margin: 4px; min-height: 12px; padding: 1px 12px 1px 0; border-radius: 6px; }
+#map .maplibregl-ctrl-attrib.maplibregl-compact-show { padding: 1px 14px 1px 5px; }
+#map .maplibregl-ctrl-attrib-button { width: 12px; height: 12px; border-radius: 6px; background-size: 12px; }
+
 .maplibregl-marker.pin { width: 36px; height: 36px; }
 .pin span { display: block; width: 36px; height: 36px; font-size: 32px; line-height: 36px; text-align: center; cursor: pointer;
             font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
