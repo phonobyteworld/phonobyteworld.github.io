@@ -2,6 +2,16 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "YAzznLXVPTw",
+   "title": "India: NVS-03 Launched Successfully",
+   "url": "https://www.youtube.com/shorts/YAzznLXVPTw",
+   "published": "2026-11-01T08:04:21Z",
+   "thumb": "https://i.ytimg.com/vi/YAzznLXVPTw/hqdefault.jpg",
+   "place": "Sriharikota, Andhra Pradesh, India",
+   "lat": 13.62805,
+   "lon": 80.22564
+  },
+  {
    "id": "zfhkDDDpFQ0",
    "title": "Kedarnath Dham Divine Aarti",
    "url": "https://www.youtube.com/shorts/zfhkDDDpFQ0",
@@ -12,5 +22,5 @@
    "lon": 79.06691
   }
  ],
- "updated": "2026-10-31T18:39:18+00:00"
+ "updated": "2026-11-01T08:09:47+00:00"
 }
