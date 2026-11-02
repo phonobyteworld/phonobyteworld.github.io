@@ -42,10 +42,13 @@ jobs:
           def clean_title(t):
               return re.sub(r"\s*[|•\-–]?\s*#\w+", "", t).strip(" |-–•")
 
-          def entry(vid, title, desc, published, thumb, lat=None, lon=None, place=""):
+          def entry(vid, title, desc, published, thumb, lat=None, lon=None, place="", recorded=""):
+              """recorded: YouTube's recording date, which the studio sets to the day of the original post;
+              the page dates the video by it ("date", YYYY-MM-DD) and falls back to "published"."""
               m = PLACE_LINE.search(desc)
               return {"id": vid, "title": clean_title(title), "url": f"https://www.youtube.com/shorts/{vid}",
-                      "published": published, "thumb": thumb or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
+                      "published": published, "date": (recorded or "")[:10],
+                      "thumb": thumb or f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg",
                       "place": place or (m.group(1) if m else ""), "lat": lat, "lon": lon}
 
           def api(method, **params):
@@ -70,13 +73,15 @@ jobs:
                       loc = rec.get("location") or {}
                       videos.append(entry(v["id"], s["title"], s.get("description", ""), s["publishedAt"],
                                           (thumbs.get("high") or thumbs.get("medium") or {}).get("url"),
-                                          loc.get("latitude"), loc.get("longitude"), rec.get("locationDescription", "")))
+                                          loc.get("latitude"), loc.get("longitude"), rec.get("locationDescription", ""),
+                                          rec.get("recordingDate", "")))
               return videos
 
           def from_feed(old):
               """Public feed, no key needed, but cached (new uploads can take hours) and only the latest 15,
               so it is merged with the videos already listed."""
               root = ET.fromstring(get(FEED, agent="Mozilla/5.0"))
+              dates = {v.get("id"): v.get("date", "") for v in old.get("videos", [])}  # the feed has no recording date
               videos = {}
               for e in root.findall("a:entry", NS):
                   g = e.find("media:group", NS)
@@ -84,7 +89,8 @@ jobs:
                   vid = e.findtext("yt:videoId", "", NS)
                   videos[vid] = entry(vid, e.findtext("a:title", "", NS),
                                       g.findtext("media:description", "", NS) if g is not None else "",
-                                      e.findtext("a:published", "", NS), thumb.get("url") if thumb is not None else None)
+                                      e.findtext("a:published", "", NS), thumb.get("url") if thumb is not None else None,
+                                      recorded=dates.get(vid, ""))
               return list(videos.values()) + [v for v in old.get("videos", []) if v.get("id") not in videos]
 
           old = json.loads(OUT.read_text()) if OUT.exists() else {}
@@ -124,7 +130,7 @@ jobs:
           for v in videos:
               if v.get("lat") is None and v.get("place"):
                   v["lat"], v["lon"] = geocode(v["place"]) or (None, None)
-          videos.sort(key=lambda v: v["published"], reverse=True)
+          videos.sort(key=lambda v: (v.get("date") or v["published"][:10], v["published"]), reverse=True)
 
           data = {"channel": "https://www.youtube.com/@PhonoByteWorld", "videos": videos}
           if {k: v for k, v in old.items() if k != "updated"} != data:

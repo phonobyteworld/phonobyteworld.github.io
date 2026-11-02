@@ -137,6 +137,8 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const pad = n => String(n).padStart(2, '0');
 const key = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
 const dayOf = iso => new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(iso));
+// the day of the story (the date of the original post, YouTube's recording date); older videos: when YouTube published it
+const day = v => v.date || dayOf(v.published);
 const shortDate = k => new Date(k + 'T12:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 const TODAY = dayOf(Date.now());
 
@@ -235,7 +237,7 @@ function drawPins(list) {
     const m = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, 4] }).setLngLat([vs[0].lon, vs[0].lat]).addTo(map);
     const v = vs[0];
     m.tip = vs.length === 1
-      ? `<div class="tip">${thumb(v)}<div><b>${esc(v.title)}</b><span>${esc(v.place)} · ${shortDate(dayOf(v.published))}</span><em>Click to watch on YouTube</em></div></div>`
+      ? `<div class="tip">${thumb(v)}<div><b>${esc(v.title)}</b><span>${esc(v.place)} · ${shortDate(day(v))}</span><em>Click to watch on YouTube</em></div></div>`
       : `<b>${esc(v.place)}</b> · ${vs.length} videos`;
     el.addEventListener('mouseenter', () => {
       hover.setLngLat(m.getLngLat()).setHTML(m.tip).addTo(map);
@@ -247,7 +249,7 @@ function drawPins(list) {
       if (vs.length === 1) return window.open(v.url, '_blank', 'noopener');
       hover.remove();
       new maplibregl.Popup({ offset: 30, className: 'pin-pop', maxWidth: '300px' }).setLngLat(m.getLngLat())
-        .setHTML(`<div class="pop"><b>${esc(v.place)}</b>${vs.map(v => `<a href="${esc(v.url)}" target="_blank" rel="noopener">${thumb(v)}<span>${esc(v.title)}<small>${shortDate(dayOf(v.published))}</small></span></a>`).join('')}</div>`)
+        .setHTML(`<div class="pop"><b>${esc(v.place)}</b>${vs.map(v => `<a href="${esc(v.url)}" target="_blank" rel="noopener">${thumb(v)}<span>${esc(v.title)}<small>${shortDate(day(v))}</small></span></a>`).join('')}</div>`)
         .addTo(map);
     });
     markers[k] = m;
@@ -294,14 +296,14 @@ function pickDay(k) {
 }
 
 function update() {
-  const list = VIDEOS.filter(v => inRange(dayOf(v.published)));
+  const list = VIDEOS.filter(v => inRange(day(v)));
   const mapped = list.filter(v => v.lat != null).length;
   const when = !range ? 'All time' : range.from === range.to ? shortDate(range.from) : `${shortDate(range.from)} – ${shortDate(range.to)}`;
   $('#summary').innerHTML = `<b>${when}</b><span>${list.length} ${list.length === 1 ? 'video' : 'videos'}${list.length ? `, ${mapped} on the map` : ''}</span>`;
   $('#list').innerHTML = list.length ? list.map(v => `<div class="item">
       <a class="t" href="${esc(v.url)}" target="_blank" rel="noopener">${thumb(v)}</a>
       <div><a href="${esc(v.url)}" target="_blank" rel="noopener"><b>${esc(v.title)}</b></a>
-        <div class="meta"><span>${shortDate(dayOf(v.published))}</span>${v.lat != null
+        <div class="meta"><span>${shortDate(day(v))}</span>${v.lat != null
           ? `<button class="place" data-spot="${spot(v)}">📍 ${esc(v.place || 'On the map')}</button>`
           : `<span class="none">${v.place ? esc(v.place) + ' (not found)' : 'No location'}</span>`}</div></div>
     </div>`).join('') : `<p class="empty">${VIDEOS.length ? 'No videos on these dates. Pick other days or “All time”.' : ''}</p>`;
@@ -344,8 +346,9 @@ document.addEventListener('click', e => {
 new IntersectionObserver(([e]) => $('#sections').classList.toggle('stuck', !e.isIntersecting)).observe($('#masthead'));
 
 fetch('data/videos.json', { cache: 'no-store' }).then(r => r.json()).catch(() => ({})).then(data => {
-  VIDEOS = (data.videos || []).filter(v => v.id && v.published).sort((a, b) => b.published.localeCompare(a.published));
-  VIDEOS.forEach(v => { const k = dayOf(v.published); perDay[k] = (perDay[k] || 0) + 1; });
+  VIDEOS = (data.videos || []).filter(v => v.id && v.published)
+    .sort((a, b) => (day(b) + b.published).localeCompare(day(a) + a.published));
+  VIDEOS.forEach(v => { const k = day(v); perDay[k] = (perDay[k] || 0) + 1; });
   if (!VIDEOS.length) empty();
   setRange(null);
 });
