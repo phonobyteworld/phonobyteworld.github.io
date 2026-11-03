@@ -2,6 +2,17 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "5N8-2dHdJVw",
+   "title": "Indian Navy Rescues Crew From Pirate Ship In Arabian Sea",
+   "url": "https://www.youtube.com/shorts/5N8-2dHdJVw",
+   "published": "2026-11-03T07:19:11Z",
+   "date": "2026-11-02",
+   "thumb": "https://i.ytimg.com/vi/5N8-2dHdJVw/hqdefault.jpg",
+   "place": "Arabian Sea",
+   "lat": 20.0,
+   "lon": 65.0
+  },
+  {
    "id": "YAzznLXVPTw",
    "title": "India: NVS-03 Launched Successfully",
    "url": "https://www.youtube.com/shorts/YAzznLXVPTw",
@@ -24,5 +35,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-02T13:25:49+00:00"
+ "updated": "2026-11-03T11:44:30+00:00"
 }
