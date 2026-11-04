@@ -2,6 +2,28 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "DdW1m5p0N0A",
+   "title": "Japan: Ubara Lion Dance Revived by Community",
+   "url": "https://www.youtube.com/shorts/DdW1m5p0N0A",
+   "published": "2026-11-04T14:32:37Z",
+   "date": "2026-11-04",
+   "thumb": "https://i.ytimg.com/vi/DdW1m5p0N0A/hqdefault.jpg",
+   "place": "Japan",
+   "lat": 36.57484,
+   "lon": 139.23942
+  },
+  {
+   "id": "8gQBpe1Pi1c",
+   "title": "Himanta Biswa Sarma: Embrace Continuous Learning",
+   "url": "https://www.youtube.com/shorts/8gQBpe1Pi1c",
+   "published": "2026-11-04T13:03:35Z",
+   "date": "2026-11-04",
+   "thumb": "https://i.ytimg.com/vi/8gQBpe1Pi1c/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
    "id": "D0poNRTXdIg",
    "title": "India's Crafts: A Nation's Artistic Heritage",
    "url": "https://www.youtube.com/shorts/D0poNRTXdIg",
@@ -11,6 +33,17 @@
    "place": "India",
    "lat": 22.35111,
    "lon": 78.66774
+  },
+  {
+   "id": "yLqx28o8q6k",
+   "title": "Ayodhya: CM Yogi Attends 10th Deepotsav Celebration",
+   "url": "https://www.youtube.com/shorts/yLqx28o8q6k",
+   "published": "2026-11-04T13:08:12Z",
+   "date": "2026-11-03",
+   "thumb": "https://i.ytimg.com/vi/yLqx28o8q6k/hqdefault.jpg",
+   "place": "Ayodhya, Uttar Pradesh",
+   "lat": 26.79907,
+   "lon": 82.20523
   },
   {
    "id": "5gvUX_QIyG0",
@@ -57,6 +90,17 @@
    "lon": null
   },
   {
+   "id": "jGC2SFemIKU",
+   "title": "Itanagar Hosts National Wushu Championship - India",
+   "url": "https://www.youtube.com/shorts/jGC2SFemIKU",
+   "published": "2026-11-04T14:17:57Z",
+   "date": "2026-11-02",
+   "thumb": "https://i.ytimg.com/vi/jGC2SFemIKU/hqdefault.jpg",
+   "place": "Itanagar, Arunachal Pradesh, India",
+   "lat": 27.09797,
+   "lon": 93.62373
+  },
+  {
    "id": "RfgoxBAfeGI",
    "title": "Japan Launches New Agency for Disaster Preparedness",
    "url": "https://www.youtube.com/shorts/RfgoxBAfeGI",
@@ -101,5 +145,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-04T11:56:34+00:00"
+ "updated": "2026-11-04T21:46:30+00:00"
 }
