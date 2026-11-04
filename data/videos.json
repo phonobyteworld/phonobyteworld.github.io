@@ -2,6 +2,72 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "D0poNRTXdIg",
+   "title": "India's Crafts: A Nation's Artistic Heritage",
+   "url": "https://www.youtube.com/shorts/D0poNRTXdIg",
+   "published": "2026-11-04T11:28:24Z",
+   "date": "2026-11-04",
+   "thumb": "https://i.ytimg.com/vi/D0poNRTXdIg/hqdefault.jpg",
+   "place": "India",
+   "lat": 22.35111,
+   "lon": 78.66774
+  },
+  {
+   "id": "5gvUX_QIyG0",
+   "title": "Assam: New Defence Manufacturing Park Announced",
+   "url": "https://www.youtube.com/shorts/5gvUX_QIyG0",
+   "published": "2026-11-04T11:17:22Z",
+   "date": "2026-11-03",
+   "thumb": "https://i.ytimg.com/vi/5gvUX_QIyG0/hqdefault.jpg",
+   "place": "Jagiroad, Assam, India",
+   "lat": 26.17722,
+   "lon": 91.74118
+  },
+  {
+   "id": "YpMxaSfP284",
+   "title": "UK Partners with Allies to Strengthen NATO",
+   "url": "https://www.youtube.com/shorts/YpMxaSfP284",
+   "published": "2026-11-04T11:16:11Z",
+   "date": "2026-11-03",
+   "thumb": "https://i.ytimg.com/vi/YpMxaSfP284/hqdefault.jpg",
+   "place": "Brussels, Belgium",
+   "lat": 50.84674,
+   "lon": 4.35249
+  },
+  {
+   "id": "ujFQBxmx5Vs",
+   "title": "Delhi: 7,000 Kg Adulterated Khoya Seized At Turkman Gate",
+   "url": "https://www.youtube.com/shorts/ujFQBxmx5Vs",
+   "published": "2026-11-04T10:00:13Z",
+   "date": "2026-11-03",
+   "thumb": "https://i.ytimg.com/vi/ujFQBxmx5Vs/hqdefault.jpg",
+   "place": "Delhi, India",
+   "lat": 28.66645,
+   "lon": 77.21698
+  },
+  {
+   "id": "aaWqNxug0Ok",
+   "title": "India: CRPF Reports Zero Critical Incidents",
+   "url": "https://www.youtube.com/shorts/aaWqNxug0Ok",
+   "published": "2026-11-04T09:23:24Z",
+   "date": "2026-11-03",
+   "thumb": "https://i.ytimg.com/vi/aaWqNxug0Ok/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "RfgoxBAfeGI",
+   "title": "Japan Launches New Agency for Disaster Preparedness",
+   "url": "https://www.youtube.com/shorts/RfgoxBAfeGI",
+   "published": "2026-11-04T11:08:47Z",
+   "date": "2026-11-02",
+   "thumb": "https://i.ytimg.com/vi/RfgoxBAfeGI/hqdefault.jpg",
+   "place": "Prefectural Office, Tokyo, Japan",
+   "lat": null,
+   "lon": null
+  },
+  {
    "id": "5N8-2dHdJVw",
    "title": "Indian Navy Rescues Crew From Pirate Ship In Arabian Sea",
    "url": "https://www.youtube.com/shorts/5N8-2dHdJVw",
@@ -35,5 +101,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-03T11:44:30+00:00"
+ "updated": "2026-11-04T11:56:34+00:00"
 }
