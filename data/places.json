@@ -3,6 +3,10 @@
   20.0,
   65.0
  ],
+ "australia": [
+  -24.77611,
+  134.755
+ ],
  "ayodhya, uttar pradesh": [
   26.79907,
   82.20523
@@ -34,6 +38,14 @@
  "kedarnath, uttarakhand, india": [
   30.73389,
   79.06691
+ ],
+ "kochi, india": [
+  9.9679,
+  76.24444
+ ],
+ "moscow, russia": [
+  55.62558,
+  37.60639
  ],
  "sriharikota, andhra pradesh, india": [
   13.62805,
