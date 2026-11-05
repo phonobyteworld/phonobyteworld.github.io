@@ -2,6 +2,39 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "RNX5Mn_wJs0",
+   "title": "Assam: Schools Open in Tea Gardens After 79 Years",
+   "url": "https://www.youtube.com/shorts/RNX5Mn_wJs0",
+   "published": "2026-11-05T17:36:21Z",
+   "date": "2026-11-05",
+   "thumb": "https://i.ytimg.com/vi/RNX5Mn_wJs0/hqdefault.jpg",
+   "place": "Assam, India",
+   "lat": 26.40738,
+   "lon": 93.25513
+  },
+  {
+   "id": "K5jdm4qCEqE",
+   "title": "India: Tribute Paid To Legendary Musician Bhupen Hazariika",
+   "url": "https://www.youtube.com/shorts/K5jdm4qCEqE",
+   "published": "2026-11-05T16:44:29Z",
+   "date": "2026-11-05",
+   "thumb": "https://i.ytimg.com/vi/K5jdm4qCEqE/hqdefault.jpg",
+   "place": "Assam, India",
+   "lat": 26.40738,
+   "lon": 93.25513
+  },
+  {
+   "id": "pU4QiPBXuYg",
+   "title": "India Launches Mangalyaan to Mars - Historic Mission!",
+   "url": "https://www.youtube.com/shorts/pU4QiPBXuYg",
+   "published": "2026-11-05T16:10:37Z",
+   "date": "2026-11-05",
+   "thumb": "https://i.ytimg.com/vi/pU4QiPBXuYg/hqdefault.jpg",
+   "place": "India",
+   "lat": 22.35111,
+   "lon": 78.66774
+  },
+  {
    "id": "Tv6airC7rEM",
    "title": "India: Agrivoltaics - Dual Harvests",
    "url": "https://www.youtube.com/shorts/Tv6airC7rEM",
@@ -9,6 +42,28 @@
    "date": "2026-11-05",
    "thumb": "https://i.ytimg.com/vi/Tv6airC7rEM/hqdefault.jpg",
    "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "hQsAz9i0kGs",
+   "title": "Haryana Celebrates 60th Anniversary of ‘Heerak’",
+   "url": "https://www.youtube.com/shorts/hQsAz9i0kGs",
+   "published": "2026-11-05T17:34:36Z",
+   "date": "2026-11-04",
+   "thumb": "https://i.ytimg.com/vi/hQsAz9i0kGs/hqdefault.jpg",
+   "place": "Kurukshetra, Haryana, India",
+   "lat": 29.96937,
+   "lon": 76.84828
+  },
+  {
+   "id": "VPdsDO6-eSE",
+   "title": "Andhra Pradesh: Flood Damage Survey After Murasu Typhoon",
+   "url": "https://www.youtube.com/shorts/VPdsDO6-eSE",
+   "published": "2026-11-05T17:24:29Z",
+   "date": "2026-11-04",
+   "thumb": "https://i.ytimg.com/vi/VPdsDO6-eSE/hqdefault.jpg",
+   "place": "Chilakaluripet, Ongole, Kuppam, Chirala, Bapatla, Andhra Pradesh",
    "lat": null,
    "lon": null
   },
@@ -200,5 +255,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-05T11:59:40+00:00"
+ "updated": "2026-11-05T21:50:23+00:00"
 }
