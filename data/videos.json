@@ -2,6 +2,17 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "3BLjzvWZBD0",
+   "title": "Uttar Pradesh: Yogi Adityanath Gains Public Support",
+   "url": "https://www.youtube.com/shorts/3BLjzvWZBD0",
+   "published": "2026-11-06T18:30:47Z",
+   "date": "2026-11-06",
+   "thumb": "https://i.ytimg.com/vi/3BLjzvWZBD0/hqdefault.jpg",
+   "place": "Uttar Pradesh",
+   "lat": 27.13033,
+   "lon": 80.85967
+  },
+  {
    "id": "RHAM3in-WLY",
    "title": "West Bengal: Kali Puja Celebrations Face Opposition in Naihati",
    "url": "https://www.youtube.com/shorts/RHAM3in-WLY",
@@ -266,5 +277,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-06T11:56:02+00:00"
+ "updated": "2026-11-06T21:22:49+00:00"
 }
