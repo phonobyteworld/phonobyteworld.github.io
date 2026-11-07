@@ -2,6 +2,17 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "w3A7hq53Hlw",
+   "title": "NASA Hubble Reveals Universe Expanding Faster",
+   "url": "https://www.youtube.com/shorts/w3A7hq53Hlw",
+   "published": "2026-11-07T15:54:52Z",
+   "date": "2026-11-06",
+   "thumb": "https://i.ytimg.com/vi/w3A7hq53Hlw/hqdefault.jpg",
+   "place": "our universe",
+   "lat": 14.64456,
+   "lon": 121.13468
+  },
+  {
    "id": "6O_dtyxc5gY",
    "title": "Kolkata: Suvendu Adhikari Meets Harbhajan Singh During Festive Celebrations",
    "url": "https://www.youtube.com/shorts/6O_dtyxc5gY",
@@ -88,6 +99,17 @@
    "place": "",
    "lat": null,
    "lon": null
+  },
+  {
+   "id": "szstsbdEHos",
+   "title": "Karnataka: Higher Milk Prices Boost Farmers' Livelihoods",
+   "url": "https://www.youtube.com/shorts/szstsbdEHos",
+   "published": "2026-11-07T16:56:17Z",
+   "date": "2026-11-04",
+   "thumb": "https://i.ytimg.com/vi/szstsbdEHos/hqdefault.jpg",
+   "place": "Karnataka, India",
+   "lat": 14.9562,
+   "lon": 75.78967
   },
   {
    "id": "hQsAz9i0kGs",
@@ -299,5 +321,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-07T10:56:32+00:00"
+ "updated": "2026-11-07T20:00:27+00:00"
 }
