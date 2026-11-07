@@ -2,6 +2,28 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "6O_dtyxc5gY",
+   "title": "Kolkata: Suvendu Adhikari Meets Harbhajan Singh During Festive Celebrations",
+   "url": "https://www.youtube.com/shorts/6O_dtyxc5gY",
+   "published": "2026-11-07T02:42:38Z",
+   "date": "2026-11-06",
+   "thumb": "https://i.ytimg.com/vi/6O_dtyxc5gY/hqdefault.jpg",
+   "place": "Kolkata, India",
+   "lat": 22.57265,
+   "lon": 88.3639
+  },
+  {
+   "id": "yFaReiHbTVc",
+   "title": "India & Greece Conduct Joint Naval Exercise in Souda Bay",
+   "url": "https://www.youtube.com/shorts/yFaReiHbTVc",
+   "published": "2026-11-07T02:28:27Z",
+   "date": "2026-11-06",
+   "thumb": "https://i.ytimg.com/vi/yFaReiHbTVc/hqdefault.jpg",
+   "place": "Souda Bay, Greece",
+   "lat": 35.48921,
+   "lon": 24.1137
+  },
+  {
    "id": "3BLjzvWZBD0",
    "title": "Uttar Pradesh: Yogi Adityanath Gains Public Support",
    "url": "https://www.youtube.com/shorts/3BLjzvWZBD0",
@@ -277,5 +299,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-06T21:22:49+00:00"
+ "updated": "2026-11-07T10:56:32+00:00"
 }
