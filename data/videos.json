@@ -2,6 +2,61 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "8s-rQ20RIHQ",
+   "title": "Coimbatore Police Conducts Intensive Checks For Diwali Safety",
+   "url": "https://www.youtube.com/shorts/8s-rQ20RIHQ",
+   "published": "2026-11-08T04:45:19Z",
+   "date": "2026-11-07",
+   "thumb": "https://i.ytimg.com/vi/8s-rQ20RIHQ/hqdefault.jpg",
+   "place": "Coimbatore City, India",
+   "lat": 11.00181,
+   "lon": 76.96284
+  },
+  {
+   "id": "DiX0ccUY89M",
+   "title": "Ministry of Railways Highlights Service and Safety",
+   "url": "https://www.youtube.com/shorts/DiX0ccUY89M",
+   "published": "2026-11-08T04:41:00Z",
+   "date": "2026-11-07",
+   "thumb": "https://i.ytimg.com/vi/DiX0ccUY89M/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "7inY96NhtCA",
+   "title": "West Bengal: Government Conducts Major Drug Drive",
+   "url": "https://www.youtube.com/shorts/7inY96NhtCA",
+   "published": "2026-11-08T04:40:40Z",
+   "date": "2026-11-07",
+   "thumb": "https://i.ytimg.com/vi/7inY96NhtCA/hqdefault.jpg",
+   "place": "West Bengal",
+   "lat": 22.99649,
+   "lon": 87.68559
+  },
+  {
+   "id": "1pvcr0H4rck",
+   "title": "Sir C. V. Raman's Discovery of the Raman Effect",
+   "url": "https://www.youtube.com/shorts/1pvcr0H4rck",
+   "published": "2026-11-08T04:28:38Z",
+   "date": "2026-11-07",
+   "thumb": "https://i.ytimg.com/vi/1pvcr0H4rck/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "Z4Y1QKu-SO4",
+   "title": "Ukraine Air Defense Shoots Down 64 Russian Drones",
+   "url": "https://www.youtube.com/shorts/Z4Y1QKu-SO4",
+   "published": "2026-11-08T04:32:08Z",
+   "date": "2026-11-06",
+   "thumb": "https://i.ytimg.com/vi/Z4Y1QKu-SO4/hqdefault.jpg",
+   "place": "Ukraine",
+   "lat": 49.4872,
+   "lon": 31.27183
+  },
+  {
    "id": "w3A7hq53Hlw",
    "title": "NASA Hubble Reveals Universe Expanding Faster",
    "url": "https://www.youtube.com/shorts/w3A7hq53Hlw",
@@ -321,5 +376,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-07T20:00:27+00:00"
+ "updated": "2026-11-08T11:08:36+00:00"
 }
