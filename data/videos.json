@@ -2,6 +2,39 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "6wDzlSvRFAc",
+   "title": "Diwali Celebrations, Police Wishes & Spiritual Events & More | 9 Nov",
+   "url": "https://www.youtube.com/shorts/6wDzlSvRFAc",
+   "published": "2026-11-09T03:55:13Z",
+   "date": "2026-11-09",
+   "thumb": "https://i.ytimg.com/vi/6wDzlSvRFAc/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "QHc3RrxHB38",
+   "title": "Madhya Pradesh: Govardhan Puja and Cow Worship Events",
+   "url": "https://www.youtube.com/shorts/QHc3RrxHB38",
+   "published": "2026-11-08T20:38:32Z",
+   "date": "2026-11-08",
+   "thumb": "https://i.ytimg.com/vi/QHc3RrxHB38/hqdefault.jpg",
+   "place": "Madhya Pradesh",
+   "lat": 23.81434,
+   "lon": 77.53407
+  },
+  {
+   "id": "xMjFJacKMyw",
+   "title": "Revanth Reddy Celebrates Diwali At Indiramma's House",
+   "url": "https://www.youtube.com/shorts/xMjFJacKMyw",
+   "published": "2026-11-08T20:37:02Z",
+   "date": "2026-11-08",
+   "thumb": "https://i.ytimg.com/vi/xMjFJacKMyw/hqdefault.jpg",
+   "place": "Persapur village, Kodangal Mandal",
+   "lat": null,
+   "lon": null
+  },
+  {
    "id": "SZCNGPoaHgs",
    "title": "Ropeways, Kedarnath Closure & CM's Plans & More | 8 Nov",
    "url": "https://www.youtube.com/shorts/SZCNGPoaHgs",
@@ -22,6 +55,17 @@
    "place": "Bastar, Chhattisgarh",
    "lat": 19.11913,
    "lon": 81.82919
+  },
+  {
+   "id": "tJT1iIP6Nhw",
+   "title": "Vice President Tributes Bharat Ratna C. On Subramaniam",
+   "url": "https://www.youtube.com/shorts/tJT1iIP6Nhw",
+   "published": "2026-11-09T06:25:28Z",
+   "date": "2026-11-07",
+   "thumb": "https://i.ytimg.com/vi/tJT1iIP6Nhw/hqdefault.jpg",
+   "place": "New Delhi",
+   "lat": 28.6139,
+   "lon": 77.20901
   },
   {
    "id": "8s-rQ20RIHQ",
@@ -398,5 +442,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-08T20:18:01+00:00"
+ "updated": "2026-11-09T12:40:12+00:00"
 }
