@@ -2,6 +2,28 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "OtzgwUDCtKc",
+   "title": "LPG Support, Odisha Vision & More | 11 Nov",
+   "url": "https://www.youtube.com/shorts/OtzgwUDCtKc",
+   "published": "2026-11-11T03:46:26Z",
+   "date": "2026-11-11",
+   "thumb": "https://i.ytimg.com/vi/OtzgwUDCtKc/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "1iSfz7ub0C4",
+   "title": "Assam Loses 8000 Hectares To Riverbank Erosion",
+   "url": "https://www.youtube.com/shorts/1iSfz7ub0C4",
+   "published": "2026-11-11T02:41:18Z",
+   "date": "2026-11-10",
+   "thumb": "https://i.ytimg.com/vi/1iSfz7ub0C4/hqdefault.jpg",
+   "place": "Assam",
+   "lat": 26.40738,
+   "lon": 93.25513
+  },
+  {
    "id": "J67Pj800qQo",
    "title": "Drone Surveillance, Temple Jewellery & More | 10 Nov",
    "url": "https://www.youtube.com/shorts/J67Pj800qQo",
@@ -475,5 +497,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-10T21:42:43+00:00"
+ "updated": "2026-11-11T11:44:27+00:00"
 }
