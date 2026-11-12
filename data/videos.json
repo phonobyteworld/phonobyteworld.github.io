@@ -2,6 +2,50 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "5ljmwQEKKOQ",
+   "title": "DGP Inauguration, Punjab Police Search & Army Hunt & More | 13 Nov",
+   "url": "https://www.youtube.com/shorts/5ljmwQEKKOQ",
+   "published": "2026-11-12T20:40:31Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/5ljmwQEKKOQ/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "uS2DS3pGSTg",
+   "title": "Haryana Police Arrests Two Criminals In Encounter",
+   "url": "https://www.youtube.com/shorts/uS2DS3pGSTg",
+   "published": "2026-11-12T20:38:58Z",
+   "date": "2026-11-12",
+   "thumb": "https://i.ytimg.com/vi/uS2DS3pGSTg/hqdefault.jpg",
+   "place": "Kaithal, Haryana",
+   "lat": 29.79966,
+   "lon": 76.39899
+  },
+  {
+   "id": "mMZ3nQ8IEKM",
+   "title": "Stand-Up India Scheme, Police Actions & More | 12 Nov",
+   "url": "https://www.youtube.com/shorts/mMZ3nQ8IEKM",
+   "published": "2026-11-12T16:24:07Z",
+   "date": "2026-11-12",
+   "thumb": "https://i.ytimg.com/vi/mMZ3nQ8IEKM/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "8FzNhlB0rfw",
+   "title": "Chhath Ghat Ready, Museum Show, Subsidy Rates & More | 12 Nov",
+   "url": "https://www.youtube.com/shorts/8FzNhlB0rfw",
+   "published": "2026-11-12T16:23:07Z",
+   "date": "2026-11-12",
+   "thumb": "https://i.ytimg.com/vi/8FzNhlB0rfw/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
    "id": "8Z-cUOrfKrM",
    "title": "Azad Celebrated, Guizhou Adventures & More | 12 Nov",
    "url": "https://www.youtube.com/shorts/8Z-cUOrfKrM",
@@ -11,6 +55,17 @@
    "place": "",
    "lat": null,
    "lon": null
+  },
+  {
+   "id": "ueOuuN9aNn4",
+   "title": "Indian Coast Guard Rescues Three Olive Ridley Turtles",
+   "url": "https://www.youtube.com/shorts/ueOuuN9aNn4",
+   "published": "2026-11-12T18:51:21Z",
+   "date": "2026-11-11",
+   "thumb": "https://i.ytimg.com/vi/ueOuuN9aNn4/hqdefault.jpg",
+   "place": "Nizampatnam",
+   "lat": 15.90459,
+   "lon": 80.66684
   },
   {
    "id": "byBM1lBiCJk",
@@ -519,5 +574,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-12T12:23:11+00:00"
+ "updated": "2026-11-12T22:08:38+00:00"
 }
