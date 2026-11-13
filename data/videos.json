@@ -2,6 +2,17 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "cter8btHATY",
+   "title": "India Exports Surge, Chhath Ghat Inaugurated & More | 13 Nov",
+   "url": "https://www.youtube.com/shorts/cter8btHATY",
+   "published": "2026-11-13T06:11:44Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/cter8btHATY/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
    "id": "5ljmwQEKKOQ",
    "title": "DGP Inauguration, Punjab Police Search & Army Hunt & More | 13 Nov",
    "url": "https://www.youtube.com/shorts/5ljmwQEKKOQ",
@@ -574,5 +585,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-12T22:08:38+00:00"
+ "updated": "2026-11-13T11:58:42+00:00"
 }
