@@ -2,6 +2,105 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "jRLForu8D7Q",
+   "title": "Chhath Festival: Special Significance of Kharna Day",
+   "url": "https://www.youtube.com/shorts/jRLForu8D7Q",
+   "published": "2026-11-14T08:59:52Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/jRLForu8D7Q/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "9EtiILitplk",
+   "title": "Kherson: Russian Drone Operator Chases Woman",
+   "url": "https://www.youtube.com/shorts/9EtiILitplk",
+   "published": "2026-11-14T08:00:27Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/9EtiILitplk/hqdefault.jpg",
+   "place": "Kherson, Ukraine",
+   "lat": 46.54217,
+   "lon": 33.40793
+  },
+  {
+   "id": "T8JdZFu66sQ",
+   "title": "PM Inaugurates Planetarium, Metro Expansion & More | 14 Nov",
+   "url": "https://www.youtube.com/shorts/T8JdZFu66sQ",
+   "published": "2026-11-14T07:50:02Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/T8JdZFu66sQ/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "9FYXoPdHqPE",
+   "title": "Hawaiʻi: USGS Monitoring Kīlauea Volcanic Activity",
+   "url": "https://www.youtube.com/shorts/9FYXoPdHqPE",
+   "published": "2026-11-14T09:03:49Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/9FYXoPdHqPE/hqdefault.jpg",
+   "place": "Hawaiʻi Volcanoes National Park, Hawaiʻi",
+   "lat": 19.26083,
+   "lon": -155.35787
+  },
+  {
+   "id": "KJh_VDtgY4o",
+   "title": "Mehsana District Winter Camp Showcases Rural Culture",
+   "url": "https://www.youtube.com/shorts/KJh_VDtgY4o",
+   "published": "2026-11-14T08:58:49Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/KJh_VDtgY4o/hqdefault.jpg",
+   "place": "Bhandu, Mehsana district",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "LebLlUHiNPs",
+   "title": "Mungeli District Receives Over 465 Crore Development Works",
+   "url": "https://www.youtube.com/shorts/LebLlUHiNPs",
+   "published": "2026-11-14T08:38:19Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/LebLlUHiNPs/hqdefault.jpg",
+   "place": "Mungeli, Chhattisgarh",
+   "lat": 22.06611,
+   "lon": 81.68743
+  },
+  {
+   "id": "90_xR0w1dVE",
+   "title": "Railways Achieve Near 100 Percent Electrification In Karnataka",
+   "url": "https://www.youtube.com/shorts/90_xR0w1dVE",
+   "published": "2026-11-14T08:37:58Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/90_xR0w1dVE/hqdefault.jpg",
+   "place": "Karnataka",
+   "lat": 14.9562,
+   "lon": 75.78967
+  },
+  {
+   "id": "brVurzQjMY4",
+   "title": "National Guard Partners With Mongolia For High-Angle Rescue Exercise",
+   "url": "https://www.youtube.com/shorts/brVurzQjMY4",
+   "published": "2026-11-14T08:05:31Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/brVurzQjMY4/hqdefault.jpg",
+   "place": "Mongolia",
+   "lat": 46.82504,
+   "lon": 103.84997
+  },
+  {
+   "id": "f9PaGw41kl8",
+   "title": "Dindigul Police Conduct Foot Patrol And Road Safety Drive",
+   "url": "https://www.youtube.com/shorts/f9PaGw41kl8",
+   "published": "2026-11-14T07:57:55Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/f9PaGw41kl8/hqdefault.jpg",
+   "place": "Dindigul District",
+   "lat": 10.42572,
+   "lon": 77.81547
+  },
+  {
    "id": "d3PrdU1H_kk",
    "title": "Drone Surveillance, Stand-Up India & Assam Education | 13 Nov",
    "url": "https://www.youtube.com/shorts/d3PrdU1H_kk",
@@ -607,5 +706,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-13T21:50:33+00:00"
+ "updated": "2026-11-14T11:18:07+00:00"
 }
