@@ -2,6 +2,28 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "mivaxypOWHA",
+   "title": "Lula in Philippines, Snow in Uttarakhand & More | 15 Nov",
+   "url": "https://www.youtube.com/shorts/mivaxypOWHA",
+   "published": "2026-11-15T14:19:16Z",
+   "date": "2026-11-15",
+   "thumb": "https://i.ytimg.com/vi/mivaxypOWHA/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "VQx1Yl8BPb4",
+   "title": "Buxar District Murder Case Solved Two Accused Arrested",
+   "url": "https://www.youtube.com/shorts/VQx1Yl8BPb4",
+   "published": "2026-11-15T12:05:46Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/VQx1Yl8BPb4/hqdefault.jpg",
+   "place": "Buxar district",
+   "lat": 25.50448,
+   "lon": 84.10975
+  },
+  {
    "id": "hUtM1WGLJGE",
    "title": "India Manufacturing Precision CNC Machines",
    "url": "https://www.youtube.com/shorts/hUtM1WGLJGE",
@@ -77,6 +99,17 @@
    "place": "",
    "lat": null,
    "lon": null
+  },
+  {
+   "id": "tJjdhRLhkgo",
+   "title": "Himachal Pradesh CMO Meets Youth On Social Challenge",
+   "url": "https://www.youtube.com/shorts/tJjdhRLhkgo",
+   "published": "2026-11-15T12:06:04Z",
+   "date": "2026-11-13",
+   "thumb": "https://i.ytimg.com/vi/tJjdhRLhkgo/hqdefault.jpg",
+   "place": "Himachal Pradesh",
+   "lat": 31.92924,
+   "lon": 77.18285
   },
   {
    "id": "9FYXoPdHqPE",
@@ -750,5 +783,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-15T11:49:50+00:00"
+ "updated": "2026-11-15T20:54:26+00:00"
 }
