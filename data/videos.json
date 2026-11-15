@@ -2,6 +2,50 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "hUtM1WGLJGE",
+   "title": "India Manufacturing Precision CNC Machines",
+   "url": "https://www.youtube.com/shorts/hUtM1WGLJGE",
+   "published": "2026-11-15T03:53:14Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/hUtM1WGLJGE/hqdefault.jpg",
+   "place": "India",
+   "lat": 22.35111,
+   "lon": 78.66774
+  },
+  {
+   "id": "FXrUiCK9eHs",
+   "title": "Online Gaming Platforms Used For Cyber Scams",
+   "url": "https://www.youtube.com/shorts/FXrUiCK9eHs",
+   "published": "2026-11-15T03:51:20Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/FXrUiCK9eHs/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "8niERaEKjsA",
+   "title": "President Meets Children On Children's Day",
+   "url": "https://www.youtube.com/shorts/8niERaEKjsA",
+   "published": "2026-11-15T03:34:52Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/8niERaEKjsA/hqdefault.jpg",
+   "place": "India",
+   "lat": 22.35111,
+   "lon": 78.66774
+  },
+  {
+   "id": "ahhytR48Szs",
+   "title": "India Beats Pakistan In Under-19 Asia Cup Victory",
+   "url": "https://www.youtube.com/shorts/ahhytR48Szs",
+   "published": "2026-11-15T03:33:32Z",
+   "date": "2026-11-14",
+   "thumb": "https://i.ytimg.com/vi/ahhytR48Szs/hqdefault.jpg",
+   "place": "Asia",
+   "lat": 51.2087,
+   "lon": 89.23437
+  },
+  {
    "id": "jRLForu8D7Q",
    "title": "Chhath Festival: Special Significance of Kharna Day",
    "url": "https://www.youtube.com/shorts/jRLForu8D7Q",
@@ -706,5 +750,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-14T11:18:07+00:00"
+ "updated": "2026-11-15T11:49:50+00:00"
 }
