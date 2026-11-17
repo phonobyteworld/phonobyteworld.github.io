@@ -2,6 +2,61 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "U8BXxdfoX5E",
+   "title": "Bageshwar Sunday Market Boosts Rural Economy",
+   "url": "https://www.youtube.com/shorts/U8BXxdfoX5E",
+   "published": "2026-11-16T13:44:57Z",
+   "date": "2026-11-16",
+   "thumb": "https://i.ytimg.com/vi/U8BXxdfoX5E/hqdefault.jpg",
+   "place": "Bageshwar, Uttarakhand",
+   "lat": 30.00879,
+   "lon": 79.92802
+  },
+  {
+   "id": "4xJpRjSLmnU",
+   "title": "Chennai Police Conduct Foot Patrols For Safety",
+   "url": "https://www.youtube.com/shorts/4xJpRjSLmnU",
+   "published": "2026-11-16T13:43:40Z",
+   "date": "2026-11-16",
+   "thumb": "https://i.ytimg.com/vi/4xJpRjSLmnU/hqdefault.jpg",
+   "place": "Chennai, India",
+   "lat": 13.08009,
+   "lon": 80.2808
+  },
+  {
+   "id": "J5-NT9ceqNg",
+   "title": "New Delhi Museum, PM in Manila & More | 16 Nov",
+   "url": "https://www.youtube.com/shorts/J5-NT9ceqNg",
+   "published": "2026-11-16T13:40:43Z",
+   "date": "2026-11-16",
+   "thumb": "https://i.ytimg.com/vi/J5-NT9ceqNg/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "8X3LRNNaZWE",
+   "title": "President Pays Tributes To Birsa Munda At Parliament House",
+   "url": "https://www.youtube.com/shorts/8X3LRNNaZWE",
+   "published": "2026-11-16T12:57:47Z",
+   "date": "2026-11-15",
+   "thumb": "https://i.ytimg.com/vi/8X3LRNNaZWE/hqdefault.jpg",
+   "place": "New Delhi, India",
+   "lat": 28.6139,
+   "lon": 77.20901
+  },
+  {
+   "id": "S3qGkyPoWSU",
+   "title": "Badrinath Dham: Snowfall Brings Divine Beauty Before Gates Close",
+   "url": "https://www.youtube.com/shorts/S3qGkyPoWSU",
+   "published": "2026-11-16T12:57:24Z",
+   "date": "2026-11-15",
+   "thumb": "https://i.ytimg.com/vi/S3qGkyPoWSU/hqdefault.jpg",
+   "place": "Badrinath Dham, Uttarakhand",
+   "lat": null,
+   "lon": null
+  },
+  {
    "id": "mivaxypOWHA",
    "title": "Lula in Philippines, Snow in Uttarakhand & More | 15 Nov",
    "url": "https://www.youtube.com/shorts/mivaxypOWHA",
@@ -783,5 +838,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-15T20:54:26+00:00"
+ "updated": "2026-11-17T00:04:24+00:00"
 }
