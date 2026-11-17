@@ -2,6 +2,50 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "nUsN556Qkf8",
+   "title": "Loni Police Arrest Accused In Encounter With Property Recovery",
+   "url": "https://www.youtube.com/shorts/nUsN556Qkf8",
+   "published": "2026-11-17T04:37:49Z",
+   "date": "2026-11-17",
+   "thumb": "https://i.ytimg.com/vi/nUsN556Qkf8/hqdefault.jpg",
+   "place": "Loni, India",
+   "lat": 21.27523,
+   "lon": 76.16067
+  },
+  {
+   "id": "daLZERTgWEY",
+   "title": "Punjab Police Conducts Statewide Gangster Raid Operation",
+   "url": "https://www.youtube.com/shorts/daLZERTgWEY",
+   "published": "2026-11-17T04:37:56Z",
+   "date": "2026-11-16",
+   "thumb": "https://i.ytimg.com/vi/daLZERTgWEY/hqdefault.jpg",
+   "place": "Punjab, India",
+   "lat": 30.92932,
+   "lon": 75.50048
+  },
+  {
+   "id": "pPp1RSisdRY",
+   "title": "Sant Baba Gurinder Singh Dhillon Ji Welcomed at Sant Kabir Kutir",
+   "url": "https://www.youtube.com/shorts/pPp1RSisdRY",
+   "published": "2026-11-17T04:26:20Z",
+   "date": "2026-11-16",
+   "thumb": "https://i.ytimg.com/vi/pPp1RSisdRY/hqdefault.jpg",
+   "place": "Sant Kabir Kutir",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "aBVio3pC3AY",
+   "title": "PM Witnesses Filipino Ramayana Performance",
+   "url": "https://www.youtube.com/shorts/aBVio3pC3AY",
+   "published": "2026-11-17T04:25:01Z",
+   "date": "2026-11-16",
+   "thumb": "https://i.ytimg.com/vi/aBVio3pC3AY/hqdefault.jpg",
+   "place": "Philippines",
+   "lat": 12.75035,
+   "lon": 122.73121
+  },
+  {
    "id": "U8BXxdfoX5E",
    "title": "Bageshwar Sunday Market Boosts Rural Economy",
    "url": "https://www.youtube.com/shorts/U8BXxdfoX5E",
@@ -838,5 +882,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-17T00:04:24+00:00"
+ "updated": "2026-11-17T12:54:46+00:00"
 }
