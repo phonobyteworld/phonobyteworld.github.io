@@ -2,6 +2,61 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "ikvThh57IoI",
+   "title": "Mount Dov Tunnel Route Watched Prior To Dismantling",
+   "url": "https://www.youtube.com/shorts/ikvThh57IoI",
+   "published": "2026-11-18T17:44:50Z",
+   "date": "2026-11-18",
+   "thumb": "https://i.ytimg.com/vi/ikvThh57IoI/hqdefault.jpg",
+   "place": "Mount Dov, southern Lebanon",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "ryS-7FotOkI",
+   "title": "Nuranang Day Commemoration and Shaurya Bhoomi Launch",
+   "url": "https://www.youtube.com/shorts/ryS-7FotOkI",
+   "published": "2026-11-18T17:44:41Z",
+   "date": "2026-11-18",
+   "thumb": "https://i.ytimg.com/vi/ryS-7FotOkI/hqdefault.jpg",
+   "place": "Nuranang",
+   "lat": 27.54959,
+   "lon": 92.02467
+  },
+  {
+   "id": "9U7ePKeQsYI",
+   "title": "Putin Visits First Russia China University in Shenzhen",
+   "url": "https://www.youtube.com/shorts/9U7ePKeQsYI",
+   "published": "2026-11-18T17:44:18Z",
+   "date": "2026-11-18",
+   "thumb": "https://i.ytimg.com/vi/9U7ePKeQsYI/hqdefault.jpg",
+   "place": "Shenzhen, China",
+   "lat": 22.54457,
+   "lon": 114.05454
+  },
+  {
+   "id": "XgxP7TcOOiw",
+   "title": "PM Modi's Gesture At Quad Summit In Manila",
+   "url": "https://www.youtube.com/shorts/XgxP7TcOOiw",
+   "published": "2026-11-18T17:34:51Z",
+   "date": "2026-11-18",
+   "thumb": "https://i.ytimg.com/vi/XgxP7TcOOiw/hqdefault.jpg",
+   "place": "Manila",
+   "lat": 14.59045,
+   "lon": 120.98036
+  },
+  {
+   "id": "KKROMtQk_Mg",
+   "title": "Punjab Raids, Madurai Robbery & Coffee Boost & more | 18 Nov",
+   "url": "https://www.youtube.com/shorts/KKROMtQk_Mg",
+   "published": "2026-11-18T14:35:43Z",
+   "date": "2026-11-18",
+   "thumb": "https://i.ytimg.com/vi/KKROMtQk_Mg/hqdefault.jpg",
+   "place": "",
+   "lat": null,
+   "lon": null
+  },
+  {
    "id": "Ibvx9cNgWXw",
    "title": "Indian Diaspora in Philippines, PM Modi Meets Sikhs & More | 17 Nov",
    "url": "https://www.youtube.com/shorts/Ibvx9cNgWXw",
@@ -904,5 +959,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-18T12:48:16+00:00"
+ "updated": "2026-11-18T22:53:48+00:00"
 }
