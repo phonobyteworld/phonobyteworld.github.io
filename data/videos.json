@@ -2,6 +2,50 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "IRoPatBlYMI",
+   "title": "Lucknow: PM Celebrates ITI Student Achievements At Kaushal Deekshant Samaroh",
+   "url": "https://www.youtube.com/shorts/IRoPatBlYMI",
+   "published": "2026-11-23T03:27:06Z",
+   "date": "2026-11-22",
+   "thumb": "https://i.ytimg.com/vi/IRoPatBlYMI/hqdefault.jpg",
+   "place": "Lucknow, Uttar Pradesh",
+   "lat": 26.8381,
+   "lon": 80.9346
+  },
+  {
+   "id": "uKfuSiJTbyk",
+   "title": "Nainital: Kainchi Dham Holy Taposthali of Baba Nib Karauri Maharaj",
+   "url": "https://www.youtube.com/shorts/uKfuSiJTbyk",
+   "published": "2026-11-23T03:18:21Z",
+   "date": "2026-11-22",
+   "thumb": "https://i.ytimg.com/vi/uKfuSiJTbyk/hqdefault.jpg",
+   "place": "Nainital district",
+   "lat": 29.295,
+   "lon": 79.41625
+  },
+  {
+   "id": "Gfl73LV_rMc",
+   "title": "Thai Researcher Uses AI To Read Ancient Japanese Texts",
+   "url": "https://www.youtube.com/shorts/Gfl73LV_rMc",
+   "published": "2026-11-23T03:17:07Z",
+   "date": "2026-11-22",
+   "thumb": "https://i.ytimg.com/vi/Gfl73LV_rMc/hqdefault.jpg",
+   "place": "Japan",
+   "lat": 36.57484,
+   "lon": 139.23942
+  },
+  {
+   "id": "gXa1yzELr5M",
+   "title": "IFFI 2026: Ramayana Opens BRICS Film Showcase",
+   "url": "https://www.youtube.com/shorts/gXa1yzELr5M",
+   "published": "2026-11-23T03:15:28Z",
+   "date": "2026-11-22",
+   "thumb": "https://i.ytimg.com/vi/gXa1yzELr5M/hqdefault.jpg",
+   "place": "India",
+   "lat": 22.35111,
+   "lon": 78.66774
+  },
+  {
    "id": "6YyaFViWAvY",
    "title": "Bihar: Bihari Rappers Are Present",
    "url": "https://www.youtube.com/shorts/6YyaFViWAvY",
@@ -1025,5 +1069,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-22T21:38:00+00:00"
+ "updated": "2026-11-23T14:13:20+00:00"
 }
