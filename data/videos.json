@@ -2,6 +2,17 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "doQI1B6SahA",
+   "title": "Punjab Raids, Bengaluru Command & More | 25 Nov",
+   "url": "https://www.youtube.com/shorts/doQI1B6SahA",
+   "published": "2026-11-25T16:53:29Z",
+   "date": "2026-11-25",
+   "thumb": "https://i.ytimg.com/vi/doQI1B6SahA/hqdefault.jpg",
+   "place": "Punjab, India",
+   "lat": 30.92932,
+   "lon": 75.50048
+  },
+  {
    "id": "Ze4I9XGCjCQ",
    "title": "Greater Chennai Police Conducts Intensive Foot Patrols",
    "url": "https://www.youtube.com/shorts/Ze4I9XGCjCQ",
@@ -1113,5 +1124,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-25T14:00:40+00:00"
+ "updated": "2026-11-26T00:04:12+00:00"
 }
