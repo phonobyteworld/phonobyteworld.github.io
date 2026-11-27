@@ -2,6 +2,17 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "LHqr8--KBbM",
+   "title": "Telangana Meet Prizes, Rafale Deployment & More | 27 Nov",
+   "url": "https://www.youtube.com/shorts/LHqr8--KBbM",
+   "published": "2026-11-27T18:04:32Z",
+   "date": "2026-11-27",
+   "thumb": "https://i.ytimg.com/vi/LHqr8--KBbM/hqdefault.jpg",
+   "place": "India",
+   "lat": 22.35111,
+   "lon": 78.66774
+  },
+  {
    "id": "OpYMZnM_aEo",
    "title": "Constitution Day Events, Mumbai Security & AI in Film | 26 Nov",
    "url": "https://www.youtube.com/shorts/OpYMZnM_aEo",
@@ -1146,5 +1157,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-27T00:25:51+00:00"
+ "updated": "2026-11-27T23:57:17+00:00"
 }
