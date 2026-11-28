@@ -2,6 +2,28 @@
  "channel": "https://www.youtube.com/@PhonoByteWorld",
  "videos": [
   {
+   "id": "CqRdD96IaNA",
+   "title": "States Gather At Muslim Dargahs After Supreme Court Order",
+   "url": "https://www.youtube.com/shorts/CqRdD96IaNA",
+   "published": "2026-11-28T07:27:37Z",
+   "date": "2026-11-28",
+   "thumb": "https://i.ytimg.com/vi/CqRdD96IaNA/hqdefault.jpg",
+   "place": "Thiruparankundram Hill, madurai",
+   "lat": null,
+   "lon": null
+  },
+  {
+   "id": "xj1tIy9DzxU",
+   "title": "CENTCOM Disables Commercial Vessel During Blockade Enforcement",
+   "url": "https://www.youtube.com/shorts/xj1tIy9DzxU",
+   "published": "2026-11-28T04:41:22Z",
+   "date": "2026-11-27",
+   "thumb": "https://i.ytimg.com/vi/xj1tIy9DzxU/hqdefault.jpg",
+   "place": "Gulf of Oman",
+   "lat": 24.2138,
+   "lon": 58.98458
+  },
+  {
    "id": "LHqr8--KBbM",
    "title": "Telangana Meet Prizes, Rafale Deployment & More | 27 Nov",
    "url": "https://www.youtube.com/shorts/LHqr8--KBbM",
@@ -1157,5 +1179,5 @@
    "lon": 79.08969
   }
  ],
- "updated": "2026-11-27T23:57:17+00:00"
+ "updated": "2026-11-28T12:48:41+00:00"
 }
